@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+		<title>知识库</title>
+		<link rel="stylesheet" href="css/awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/news.css"/>
+	</head>
+
+	<body>
+
+		<div class="contents">
+			<h1 class="h1">知识库</h1>
+
+			<h3 class="h3">欢迎使用宁夏水投知识库</h3>
+			<div class="decorate"></div>
+			<h3 class="h3">知识库分类</h3>
+
+			<div class="classify">
+				<ul>
+					<li>
+						<i class="fa fa-building"></i>
+						<h6 class="h6"><a href="../knowledge2/index.html">生产相关</a></h6>
+					</li>
+					<li>
+						<i class="fa fa-bank"></i>
+						<h6 class="h6">社会保障</h6>
+					</li>
+					<li>
+						<i class="fa fa-group"></i>
+						<h6 class="h6">企业管理</h6>
+					</li>
+					<li>
+						<i class="fa fa-gavel"></i>
+						<h6 class="h6">法律法规</h6>
+					</li>
+					<li>
+						<i class="fa fa-heart"></i>
+						<h6 class="h6">健康生活</h6>
+					</li>
+					<li>
+						<i class="fa fa-internet-explorer"></i>
+						<h6 class="h6">电脑网络</h6>
+					</li>
+					<li>
+						<i class="fa fa-mortar-board"></i>
+						<h6 class="h6">科学教育</h6>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!--<div class="navs" id="back">
+			<a href="" class="nav on">知识库</a>
+			<a href="../../menu.html" class="back">返回菜单</a>
+			<div id="moveW" style="position: absolute; left: 0px; background-color: rgb(102, 85, 136); color: transparent; border-radius: 10px; height: 20px; top: -10px; width: 160px;">集团介绍</div>
+		</div>-->
+
+		<div class="footer">
+			<a class="xz" onclick="hp()" style="border-radius: 0px;">知识库</a>
+			<div class="fh" onclick="hpback(4)">
+				<a class="fhcd" href="javascript:;">返回菜单</a>
+			</div>
+		</div>
+		<div id="biaoJi" style="z-index:10;width:195px;position:absolute;bottom: 70px;background-color: #004477;border-radius:20px;height: 40px;"></div>
+
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript">
+			var index = 0;
+
+			function hp() {
+				window.location.href="../knowledge2/index.html";
+			}
+
+			function getTop(o) {
+				var offTop = o.offsetTop;
+				if(o.offsetParent) {
+					offTop += arguments.callee(o.offsetParent);
+				}
+				return offTop;
+			}
+
+			function getLeft(o) {
+				var offLeft = o.offsetLeft;
+				if(o.offsetParent) {
+					offLeft += arguments.callee(o.offsetParent);
+				}
+				return offLeft;
+			}
+
+			function getStyle(o) {
+				return o.currentStyle || window.getComputedStyle(o, null);
+			}
+
+			function hpback() {
+				window.location.href = "../../menu.html";
+			}
+
+			function leftLoad(list, index) {
+				$(".neirong").load('temple/' + list + '/one/' + index + '.html', function() {
+					setTimeout(function() {
+						document.querySelector(".neirong").style.opacity = 1;
+					}, 500);
+				});
+			}
+
+			function rightLoad(list) {
+				$(".lb_pic").load('temple/' + list + '/list/list.html', function() {
+					$(".lb_pic a").click(function() {
+						var childIndex = $(".lb_pic a").index(this);
+						document.querySelector(".neirong").style.opacity = 0;
+						setTimeout(function() {
+							leftLoad(index, childIndex);
+						}, 500);
+					});
+				});
+			}
+		</script>
+		<script>
+			//			(function($) {
+			//				var $moveW = $('#moveW');
+			//				var moveW = $moveW.outerWidth();
+			//				$('.navs').on('click', '.nav', function(e) {
+			//					e.preventDefault();
+			//					var $this = $(this);
+			//					var index = $this.index();
+			//					$this.addClass('on').siblings().removeClass('on');
+			//					$('.content').eq(index).fadeIn(400).siblings().hide();
+			//					$moveW.animate({
+			//						left: moveW * index
+			//					}, 200);
+			//				});
+			//			})(jQuery);
+		</script>
+	</body>
+	<script type="text/javascript" src="../../js/pingbao.js"></script>
+
+</html>

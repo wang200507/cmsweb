@@ -41,7 +41,7 @@
 				<a onclick="hp(2,1)">团青工作</a>
 				<a onclick="hp(3,3)">教育实践</a>
 				<div class="fh" onclick="hpback(4)">
-					<a class="fhcd" href="javascript:">返回菜单</a>
+					<a class="fhcd" href="javascript:;">返回菜单</a>
 				</div>
 			</div>
 			<div id="biaoJi" style="z-index:10;width:200px;position:absolute;bottom: 70px;background-color: #004477;border-radius:20px;height: 40px;"></div>
@@ -62,9 +62,9 @@
 							ary[i].className = "";
 						}
 					}
-					var obj = document.querySelector(".footer").querySelectorAll("a")[changeIndex];
+					var obj = document.querySelector(".footer").querySelectorAll("a")[changeIndex]
 					var _style = getStyle(obj);
-					var _left = getLeft(obj);
+					var _left = getLeft(obj)
 					document.getElementById("biaoJi").style.left = _left + "px";
 
 //					setTimeout(function() {

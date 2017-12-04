@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			
+			img {
+				width: 300px;
+				height: 200px;
+			}
+			
+			html,
+			body {
+				height: 100%;
+				background-color: black;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script src="js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.banner.revolution.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/banner.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div>
+			<img src="img/log.png" />
+		</div>
+		<!--<div style="position: absolute;left: 0px;bottom: 0px;color: white;font-size: xx-large">
+			宁夏水投集团
+		</div>-->
+		<div style="position: absolute;right: 0px;bottom: 0px;color: white;font-size: xx-large">
+			<span>宁夏水务投资集团有限公司 &nbsp;&nbsp;&nbsp;&nbsp;宣</span><br/> 
+			<span>宁&nbsp;夏&nbsp;水&nbsp;投&nbsp;科&nbsp;技&nbsp;&nbsp;有限公司&nbsp;&nbsp;&nbsp;&nbsp;制作</span>
+		</div>
+		<div id="wrapper" style="width: 50%;margin-left: 25%;">
+			<div class="fullwidthbanner-container">
+				<div class="fullwidthbanner" style="height: 50%;">
+					<ul>
+						<li data-transition="3dcurtain-horizontal" data-slotamount="10" data-masterspeed="30">
+							<img src="img/1.jpg" alt="" />
+						</li>
+						<li data-transition="3dcurtain-vertical" data-slotamount="10" data-masterspeed="30" data-link="#">
+							<img src="img/2.jpg" alt="" />
+						</li>
+						<li data-transition="papercut" data-slotamount="10" data-masterspeed="30" data-link="#">
+							<img src="img/3.jpg" alt="" />
+						</li>
+						<li data-transition="turnoff" data-slotamount="10" data-masterspeed="30">
+							<img src="img/4.jpg" alt="" />
+						</li>
+						<li data-transition="flyin" data-slotamount="10" data-masterspeed="30">
+							<img src="img/5.jpg" alt="" />
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		!(function() {
+			var txt = window.location.search;
+			txt = txt.substring(4);
+			document.querySelector("body").addEventListener("click", function() {
+				window.location.href = txt;
+			})
+		})();
+	</script>
+
+</html>

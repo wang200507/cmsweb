@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>企业经营管理</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<link rel="stylesheet" type="text/css" href="css/news.css">
+		<link rel="stylesheet" type="text/css" href="css/self.css" />
+		<style>
+			.iframe { 
+				position: fixed;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+			}
+			.footer { 
+				font-size: 0;
+			}
+			.footer a { 
+				margin-left: 0;
+				box-sizing: border-box;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<iframe class="iframe" frameborder="0"></iframe>
+			<div class="footer">
+				<a href="iframe/qyzl/index.html" class="xz">企业战略</a>
+				<a href="iframe/qysj/index.html">企业数据</a>
+				<a href="../../menu.html" class="fhcd">返回菜单</a>
+			</div>
+			<div id="biaoJi" style="z-index: 10; width: 200px; position: absolute; bottom: 70px; background-color: rgb(0, 68, 119); border-radius: 20px; height: 40px;"></div>
+		</div>
+
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript">
+			jQuery(function($){ 
+				var getHtml = function(href) { 
+					$('.iframe').attr('src', href);
+				};
+				var defaultHref = 'iframe/qyzl/index.html';
+				getHtml(defaultHref);
+				$('.footer').on('click', '> a:not(".fhcd")', function(e) { 
+					e.preventDefault();
+					var $this = $(this);
+					var index = $this.index();
+					var $biaoJi = $('#biaoJi');
+					var offsetWidth = $this.width();
+					var ORIGIN_OFFSET = 0;
+
+					$this.addClass('xz').siblings().removeClass('xz');
+					$biaoJi.css('left', offsetWidth * index - ORIGIN_OFFSET);
+
+					getHtml($this.attr('href'));
+				});
+			});
+		</script>
+		<script type="text/javascript" src="../../js/pingbao.js"></script>
+	</body>
+</html>

@@ -1,0 +1,329 @@
+﻿<!doctype html>
+<html lang="chn">
+	<head>
+		<meta charset="UTF-8">
+		<title>企业数据</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<link rel="stylesheet" type="text/css" href="css/news.css">
+		<link rel="stylesheet" type="text/css" href="css/self.css" />
+
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<style type="text/css">
+			#divcontent {
+				position: absolute;
+				top: 50px;
+				right: 100px;
+				width: 400px;
+				height: 800px;
+				background: #334577;
+				opacity: 0.7;
+				border-radius: 20px;
+			}
+			
+			#divcontent .title {
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				color: white;
+				border-bottom: 2px solid #1501CF;
+				margin-left: 20px;
+				margin-right: 20px;
+				opacity: 1;
+				font-size: 1.4rem;
+			}
+			
+			#divcontent .btnlist {
+				margin-top: 10px;
+				width: 100%;
+				height: 30px;
+			}
+			
+			.btnlist span {
+				width: 35%;
+				height: 30px;
+				line-height: 30px;
+				color: white;
+				display: inline-block;
+				margin-left: 10%;
+				text-align: center;
+				background: #193366;
+				border-radius: 2px;
+				font-size: 1.2rem;
+			}
+			
+			.activity {
+				background: #39B0FF !important;
+				opacity: 1;
+			}
+			
+			#divcontent p {
+				margin: 20px;
+				color: white;
+				line-height: 1.5;
+				font-size: 1.2rem;
+			}
+		</style>
+		<style>
+			.company {
+				transition: opacity 0.5s;
+			}
+			
+			table {
+				border: 1px black solid;
+				border-collapse: collapse;
+			}
+			
+			td {
+				border: 1px black solid;
+				color: black;
+				text-align: right;
+			}
+		</style>
+	</head>
+	<script type="text/javascript">
+		var points = new Array();
+		var mouseClick = function() {
+			var e = window.event || arguments.callee.caller.arguments[0];
+			points.push(e.clientX + "," + e.clientY);
+			console.log("points", points.toString());
+		}
+		var currentIndex = 1;
+		var selectCompany = function(index) {
+			if(true) {
+				document.getElementById("company_" + currentIndex).style.opacity = 0;
+				setTimeout(function() {
+					document.getElementById("company_" + currentIndex).style.display = "none";
+					document.getElementById("company_" + index).style.display = "block";
+					document.getElementById("company_" + index).style.opacity = 1;
+					currentIndex = index;
+				}, 1000);
+			}
+		}
+		var toastInformation = function(index) {
+			var e = window.event || arguments.callee.caller.arguments[0]
+			var o = e.target || e.srcElement;
+			console.log(o.parentNode.children);
+			if(index == 0) {
+				o.parentNode.children[0].setAttribute("class", "activity");
+				o.parentNode.children[1].setAttribute("class", "");
+				o.parentNode.parentNode.querySelectorAll("p")[0].style.display = "block";
+				o.parentNode.parentNode.querySelectorAll("p")[1].style.display = "none";
+			} else if(index == 1) {
+				o.parentNode.children[1].setAttribute("class", "activity");
+				o.parentNode.children[0].setAttribute("class", "");
+				o.parentNode.parentNode.querySelectorAll("p")[1].style.display = "block";
+				o.parentNode.parentNode.querySelectorAll("p")[0].style.display = "none";
+			}
+		}
+	</script>
+
+	<body>
+		<div style="position: absolute;z-index: 100;left: 0px;top: 0px;background: white;border: 1px solid black; border-radius: 10px;">
+			<table>
+				<tr>
+					<td>年份</td>
+					<td>2015</td>
+					<td>2016</td>
+				</tr>
+				<tr>
+					<td>全区GDP</td>
+					<td>2911.77亿元</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>集团供水区域GDP</td>
+					<td>722.43亿元</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>集团供水区域GDP占全区</td>
+					<td>24.81%</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>全区用水总量</td>
+					<td>70.37亿立方米</td>
+					<td>64.89亿立方米</td>
+				</tr>
+				<tr>
+					<td>生活用水</td>
+					<td>2.33亿立方米</td>
+					<td>2.78亿立方米</td>
+				</tr>
+				<tr>
+					<td>工业用水</td>
+					<td>4.35亿立方米</td>
+					<td>4.39亿立方米</td>
+				</tr>
+				<tr>
+					<td>农业用水</td>
+					<td>63.69亿立方米</td>
+					<td>57.72亿立方米</td>
+				</tr>
+				<tr>
+					<td>万元GDP用水量</td>
+					<td>260立方米</td>
+					<td>206立方米</td>
+				</tr>
+				<tr>
+					<td>万元工业增加值用水量</td>
+					<td>39立方米</td>
+					<td>42立方米</td>
+				</tr>
+				<tr>
+					<td>污水处理率</td>
+					<td>88.97%</td>
+					<td>91.95%</td>
+				</tr>
+				<tr>
+					<td>排水管道</td>
+					<td>2737公里</td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		<div class="box">
+			<div class="left_main" style="width: 100%;display: block;margin-top: 0px;margin-left: 0px;">
+				<img src="img/backgroupd.png" usemap="#mapbackgroupd" style="width: 100%;margin-top: -1px;" onclick="mouseClick()" />
+				<map name="mapbackgroupd">
+					<area onclick="selectCompany(1)" shape="poly" coords="696,671,691,687,744,726,732,773,774,797,795,764,814,761,824,781,839,787,839,796,857,792,837,729,839,702,815,641,815,604,755,566,772,587,782,610,764,643,778,647,790,634,815,663,826,704,817,720,812,728,793,698,695,671,692,687"/>
+					<area onclick="selectCompany(2)" shape="poly" coords="882,326,894,332,891,349,897,367,907,362,915,362,915,389,927,391,938,371,920,360,931,349,899,346,902,334,894,336,893,324,887,320,885,328"/>
+					<area onclick="selectCompany(3)" shape="poly" coords="755,510,797,538,808,535,839,553,839,536,843,518,867,507,877,519,885,515,864,501,859,486,849,494,816,483,792,497,800,507,760,510"/>
+					<area onclick="selectCompany(4)" shape="poly" coords="856,341,873,337,888,318,901,332,900,344,943,341,945,325,934,304,912,292,922,244,904,259,907,270,905,290,859,340" />
+					<area onclick="selectCompany(6)" shape="poly" coords="909,456,917,531,957,578,994,539,999,515,1109,429,1068,407,1066,393,1025,360,934,375,927,395,922,388,921,427,926,412,948,432,955,439,908,455"/>
+					<area onclick="selectCompany(7)" shape="poly" coords="899,264,869,269,855,326,898,297,901,262" />
+					<area onclick="selectCompany(8)" shape="poly" coords="814,838,824,851,816,858,810,886,828,901,796,894,772,916,782,936,791,923,811,933,789,950,819,941,828,959,838,949,868,984,899,966,890,930,895,917,888,896,862,891,862,880,871,861,902,855,895,837,890,803,902,768,901,743,895,720,880,714,845,728,858,793,839,803,800,763" />
+				</map>
+				<div id="divcontent">
+					<div id="company_1" class="company" style="display: block;">
+						<div class="title">宁夏水投中源水务有限公司</div>
+						<div class="btnlist">
+							<span class="activity" onclick="toastInformation(0)">企业介绍</span>
+							<span onclick="toastInformation(1)">生产数据</span>
+						</div>
+						<p style="display: block;">
+							&nbsp;&nbsp;&nbsp;&nbsp;宁夏水投中源水务有限公司前身是宁夏新海水务有限公司，公司于2010年3月正式成立，隶属宁夏水务投资集团有限公司全资子公司，注册资本金8600万元。 主要从事工业和城镇供排水工程的投资、建设、经营和管理水处理工程水保及环境保护项目的投资建设经营和管理。 供排水工程物资营销及相关产业产品的开发与经营与项目区水利工程有关的土地旅游资源的开发等业务。
+							<br/>
+							<br/> &nbsp;&nbsp;&nbsp;&nbsp;2016年11月20日与海原县政府签订水务一体化合作协议，接管了海原县自来水公司及海原新区自来水公司。2017年5月12日与同心县政府签订水务一体化合作协议，接管了同心县自来水公司，同心中西部农村人饮工程。2017年6月，公司更名为宁夏水投中源水务有限公司。
+							<br/>
+							<br/> &nbsp;&nbsp;&nbsp;&nbsp;公司设有党群工作部、财务部、运营管理部、发展规划部、安全监督管理部和综合部6个职能部门和海原分公司、海兴分公司、同心分公司、东部分公司、西部分公司5个基层运营单位。公司现有员工293人。
+						</p>						
+						<p style="display: none;">
+							9月供水量： 84（万吨）<br/> 10月供水量： 254（万吨）<br/> 环比： 203%<br/> 本年累计： 919（万吨）<br/> 去年同期： 490（万吨）<br/> 同比： -<br/> 年度指标：1012（万吨）
+							<br/> 完成比例： 91%
+						</p>
+					</div>
+					<div id="company_2" class="company" style="display: none;">
+						<div class="title">宁夏宁东水务有限责任公司</div>
+						<div class="btnlist">
+							<span class="activity" onclick="toastInformation(0)">企业介绍</span>
+							<span  onclick="toastInformation(1)">生产数据</span>
+						</div>
+						<p style="display: block;">
+							&nbsp;&nbsp;&nbsp;&nbsp;宁夏宁东水务有限责任公司，2003年12月成立，注册资金25862万元，主要从事工业和城镇供排水工程的投资、建设、经营和管理； 供排水设备的检修、运行、维护及设计、安装、调试、污水处理工程；项目区工程建设有关的水利资源的开发利用等业务。
+							<br/>
+							<br/> &nbsp;&nbsp;&nbsp;&nbsp;公司设立综合办公室、监察审计部、人力资源部、安全生产监督管理部门、财务部、发展规划部、工程管理部、运营管理部8个部门，客户服务中心、水源泵站、鸭子荡水库、调度中心、宁东水厂、检修工程公司、管网公司、污水处理厂、后勤服务公司9个基层单位，现有员工167人。
+						</p>
+						<p style="display: none;">
+							9月供水量： 1354（万吨）<br/> 10月供水量： 1047（万吨）<br/> 环比： -23%<br/> 本年累计： 13333（万吨）<br/> 去年同期： 10579（万吨）<br/> 同比： 26%<br/> 年度指标：13441（万吨）
+							<br/> 完成比例： 99%
+						</p>						
+					</div>
+					<div id="company_3" class="company" style="display: none;">
+						<div class="title">宁夏水投红寺堡水务有限公司</div>
+						<div class="btnlist">
+							<span class="activity" onclick="toastInformation(0)">企业介绍</span>
+							<span onclick="toastInformation(1)">生产数据</span>
+						</div>
+						<p style="display: block;">
+							&nbsp;&nbsp;&nbsp;&nbsp;宁夏水投红寺堡水务有限公司公司，2013年12月成立，注册资金12942万元，主要从事城乡供水、工业供水、污水处理及中水等涉水项目的投资、建设、经营和管理； 水保及环保项目的投资、建设、经营和管理；水处理工程，涉水工程物资营销及相关产业，产品看开发与经营； 有关涉水项目的土地、旅游资源的开发和经营等。（依法须经批准的项目，经有关部门批准后方可开展经营活动）等业务。
+							<br/>
+							<br/> &nbsp;&nbsp;&nbsp;&nbsp;公司设立5个职能部门（分别是综合办公室、生产运营与工程管理部、发展规划部、财务部、安全生产监督管理部），3个运行单位（分别是供水公司、检修中心、客户服务中心），现有员工77人。
+						</p>						
+						<p style="display: none;">
+							9月供水量： 46（万吨）<br/> 10月供水量： 43（万吨）<br/> 环比： -8%<br/> 本年累计： 577（万吨）<br/> 去年同期： 525（万吨）<br/> 同比： 10%<br/> 年度指标：606（万吨）
+							<br/> 完成比例： 95%
+						</p>
+					</div>
+					<div id="company_4" class="company" style="display: none;">
+						<div class="title">宁夏长城水务有限责任公司</div>
+						<div class="btnlist">
+							<span class="activity" onclick="toastInformation(0)">企业介绍</span>
+							<span onclick="toastInformation(1)">生产数据</span>
+						</div>
+						<p style="display: block;">
+							&nbsp;&nbsp;&nbsp;&nbsp;宁夏长城水务有限责任公司，2010年3月25日成立，注册资金13973万元，主要从事工业和城镇供排水工程的投资、建设；污水处理工程的投资、建设；供排水工程、物资营销及相关产业、产品的开发和经营；与项目区水利工程有关的旅游资源的开发利用；房屋租赁等业务。
+							<br/><br/> &nbsp;&nbsp;&nbsp;&nbsp;公司设有党群工作部、综合办公室、发展规划部、运营管理部、财务部、安监部、工程部七个职能部室，长城水厂、检修队、管网公司、服务中心四个基层单位，宁夏长城滨河水务有限公司一个全资子公司。
+							<br/><br/> &nbsp;&nbsp;&nbsp;&nbsp;公司现有员工90人，其中：研究生学历9人，大学本科学历53人，大学专科学历24人，中专及以下学历4人,专业技术管理人员34人。
+						</p>						
+						<p style="display: none;">
+							9月供水量： 309（万吨）<br/> 10月供水量： 314（万吨）<br/> 环比： 1%<br/> 本年累计： 3237（万吨）<br/> 去年同期： 2451（万吨）<br/> 同比： 32%<br/> 年度指标：3550（万吨）
+							<br/> 完成比例： 91%
+						</p>
+					</div>
+					<div id="company_5" class="company" style="display: none;">
+						<div class="title">宁夏清水源环保科技有限责任公司</div>
+						<div class="btnlist">
+							<span class="activity" onclick="toastInformation(0)">企业介绍</span>
+							<span onclick="toastInformation(1)">生产数据</span>
+						</div>
+						<p style="display: block;">
+							&nbsp;&nbsp;&nbsp;&nbsp;宁夏清水源环保科技有限责任公司，2010年2月成立，注册资金500万万元，主要从事水处理药剂的投资、建设、生产和销售；消毒产品及化工产品（不含易制毒危险品）的研发、生产及销售；液氯、盐酸、高锰酸钾、氢氧化钠、次氯酸钠、三氯化铁、氢氧化钠溶液、三氯化铁溶液、过氧化氢溶液的销售；水处理药剂相关产业的产品开发和技术服务；环保节能技术及产品的研发、生产及销售，水处理及环保技术开发、技术转让、技术咨询服务；环保设备的生产、销售；水处理设备及配件、净水设备、电子产品、电线电缆、机电设备、建筑材料及管道、阀门的销售；环保及水处理工程项目建设承接和技术服务；自营和代理各类商品及技术的进出口业务，国家限定企业经营或禁止进出口的商品和技术除外等业务。
+							<br/><br/> &nbsp;&nbsp;&nbsp;&nbsp;公司设立综合部、营销部、生产运营部3个部门，现有员工20人。
+						</p>
+						<p style="display: none;">
+							9月供水量： 309（万吨）<br/> 10月供水量： 314（万吨）<br/> 环比： 1%<br/> 本年累计： 3237（万吨）<br/> 去年同期： 2451（万吨）<br/> 同比： 32%<br/> 年度指标：3550（万吨）
+							<br/> 完成比例： 91%
+						</p>						
+					</div>
+					<div id="company_6" class="company" style="display: none;">
+						<div class="title">宁夏太阳山水务有限责任公司</div>
+						<div class="btnlist">
+							<span class="activity" onclick="toastInformation(0)">企业介绍</span>
+							<span  onclick="toastInformation(1)">生产数据</span>
+						</div>
+						<p style="display: block;">
+							&nbsp;&nbsp;&nbsp;&nbsp;宁夏太阳山水务有限责任公司，2007年7月成立，注册资金28661.8967万元，主要从事工业和城镇供排水等工程的投资、建设、经营和管理；水处理工程、水保和环保项目的投资、建设、经营和管理；供排水工程物资营销及相关产业、产品的开发与经营；与项目区水利工程有关的旅游资源的开发等业务。
+							<br/><br/> &nbsp;&nbsp;&nbsp;&nbsp;公司设立综合管理部、财务产权部、生产技术部、发展规划部、安全生产监督管理部5个部门、太阳山水厂、维修服务分公司、金积供水分公司3个基层单位、科沃环保科技有限公司1个子公司，现有员工90人（正式工）。
+						</p>
+						<p style="display: none;">
+							9月供水量： 132（万吨）<br/> 10月供水量： 133（万吨）<br/> 环比： 0%<br/> 本年累计： 1415（万吨）<br/> 去年同期： 1097（万吨）<br/> 同比： 29%<br/> 年度指标：1454（万吨）
+							<br/> 完成比例： 97%
+						</p>						
+					</div>
+					<div id="company_7" class="company" style="display: none;">
+						<div class="title">银川水务公司</div>
+						<div class="btnlist">
+							<span class="activity" onclick="toastInformation(0)">企业介绍</span>
+							<span onclick="toastInformation(1)">生产数据</span>
+						</div>
+						<p style="display: block;">
+							&nbsp;&nbsp;&nbsp;&nbsp;宁夏水投银川水务有限公司，2015年12月成立，注册资金5100万元，主要从事工业和城镇给排水工程、水处理工程、水质保持工程及环保项目的建设、运营管理及投资、供排水工程物资及相关产品的开发及销售、旅游资源的开发等业务。
+							<br/><br/> &nbsp;&nbsp;&nbsp;&nbsp;公司设立综合部、发展规划部2个部门、贺兰供水分公司1个基层单位，现有员工16人。
+						</p>
+						<p style="display: none;">
+							9月供水量： 4.61（万吨）<br/> 10月供水量： 7.31（万吨）<br/> 环比： 59%<br/> 本年累计： 65.59（万吨）<br/> 去年同期： 63.56（万吨）<br/> 同比： 3%<br/> 年度指标：80（万吨）
+							<br/> 完成比例： 82%
+						</p>						
+					</div>
+					<div id="company_8" class="company" style="display: none;">
+						<div class="title">六盘山公司</div>
+						<div class="btnlist">
+							<span class="activity" onclick="toastInformation(0)">企业介绍</span>
+							<span  onclick="toastInformation(1)">生产数据</span>
+						</div>
+						<p style="display: block;">
+							&nbsp;&nbsp;&nbsp;&nbsp;宁夏六盘山水务有限公司，2011年8月成立，注册资金16359.4916万元，主要从事城乡供排水及污水处理，工业排水以及与供水相关的工程建设和管理，供水及相关材料的销售及维修，市政公用工程等业务。
+							<br/><br/> &nbsp;&nbsp;&nbsp;&nbsp;公司设立综合部、党群部、发展规划部、财务部、运营部、安全生产监督管理部、工程技术部7个部门，西吉分公司、开发公司、制水公司、客服公司、管网公司、水质监测中心、彭堡水源供水管理所、五里山供水管理所、中庄水库管理所、泾源供水管理所、工程分公司11个基层单位，现有员工262人。
+						</p>						
+						<p style="display: none;">
+							9月供水量： （万吨）<br/> 10月供水量：（万吨）<br/> 环比： <br/> 本年累计：（万吨）<br/> 去年同期： 万吨）<br/> 同比：<br/> 年度指标：（万吨）
+							<br/> 完成比例： 82%
+						</p>
+					</div>					
+				</div>
+			</div>
+	</body>
+</html>

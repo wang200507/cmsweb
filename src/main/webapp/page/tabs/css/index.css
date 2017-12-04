@@ -1,0 +1,108 @@
+/* 常用工具类 */
+.clearfix:after {
+  clear: both;
+}
+.clearfix:before,
+.clearfix:after {
+  content: ' ';
+  display: table;
+}
+.clearfix {
+  *zoom: 1;
+}
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+ul,
+li {
+  list-style: none;
+}
+.contents {
+  position: absolute;
+  top: 0;
+  bottom: 50px;
+  width: 100%;
+  overflow: auto;
+  text-align: center;
+}
+.contents .h1 {
+  margin: 20px 0 60px;
+}
+.contents .h3 {
+  margin: 15px 0;
+  color: #666666;
+}
+.contents .decorate {
+  width: 100%;
+  height: 150px;
+  background: url(../img/1.jpg) no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+}
+.contents .classify {
+  text-align: center;
+}
+.contents .classify ul {
+  display: inline-block;
+}
+.contents .classify ul li {
+  float: left;
+  padding: 50px 20px;
+  font-size: 22px;
+}
+.contents .classify ul li .fa {
+  font-size: 26px;
+}
+.contents .classify ul li .h6 {
+  margin-top: 10px;
+}
+.contents .classify ul li .h6 a {
+  color: black;
+  text-decoration: none;
+}
+.contents .question {
+  color: #13182e;
+  text-decoration: none;
+  font-weight: bold;
+}
+.contents .question:focus,
+.contents .question:hover {
+  color: #13182e;
+}
+.navs {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  background-color: #13182e;
+}
+.navs .nav {
+  float: left;
+  width: 160px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1em;
+  text-align: center;
+}
+.navs .nav:hover {
+  background-color: #658;
+}
+.navs .on {
+  background-color: #658;
+}
+.navs .back {
+  float: right;
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #658;
+  padding: 0 2em;
+}

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="chn">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>员工风采</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!-- 删除苹果默认的工具栏和菜单栏 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<!-- 设置苹果工具栏颜色 -->
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+
+		<link rel="stylesheet" type="text/css" href="css/news.css">
+		<link rel="stylesheet" type="text/css" href="css/self.css" />
+
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+	</head>
+
+	<body onload="hp(0)" class="">
+		<div class="box">
+			<div class="left_main">
+				<div class="neirong" id="nr_id001">
+
+				</div>
+			</div>
+			<div class="right_main">
+				<h3>员工风采</h3>
+				<div class="pt">
+					<div class="lb_pic">
+
+					</div>
+				</div>
+			</div>
+			<div class="footer">
+				<a class="xz" onclick="hp(0)">员工风采</a>
+				
+				<div class="fh" onclick="hpback(4)">
+					<a class="fhcd" href="javascript:;">返回菜单</a>
+				</div>
+			</div>
+			<div id="biaoJi" style="z-index:10;width:200px;position:absolute;bottom: 70px;background-color: #004477;border-radius:20px;height: 40px;"></div>
+			<script type="text/javascript">
+				var index = 0;
+
+				function hp(changeIndex) {
+					document.querySelector(".right_main").style.height = "0px";
+					document.querySelector(".neirong").style.opacity = 0;
+					index = changeIndex;
+					leftLoad(index, 0);
+					rightLoad(index);
+					var ary = document.querySelector(".footer").querySelectorAll("a");
+					for(var i = 0; i < ary.length - 1; i++) {
+						if(i == index) {
+							ary[i].className = "xz";
+						} else {
+							ary[i].className = "";
+						}
+					}
+					var obj = document.querySelector(".footer").querySelectorAll("a")[index]
+					var _style = getStyle(obj);
+					var _width = _style.width;
+					var _left = getLeft(obj)
+					document.getElementById("biaoJi").style.width = _width;
+					document.getElementById("biaoJi").style.left = _left + "px";
+
+//					setTimeout(function() {
+//						document.querySelector(".neirong").style.opacity = 1;
+//					}, 500);
+
+					setTimeout(function() {
+						document.querySelector(".right_main").querySelector("h3").innerHTML = ary[index].innerHTML;
+						document.querySelector(".right_main").style.height = "100%";
+					}, 1000);
+
+				}
+
+				function getTop(o) {
+					var offTop = o.offsetTop;
+					if(o.offsetParent) {
+						offTop += arguments.callee(o.offsetParent);
+					}
+					return offTop;
+				}
+
+				function getLeft(o) {
+					var offLeft = o.offsetLeft;
+					if(o.offsetParent) {
+						offLeft += arguments.callee(o.offsetParent);
+					}
+					return offLeft;
+				}
+
+				function getStyle(o) {
+					return o.currentStyle || window.getComputedStyle(o, null);
+				}
+
+				function hpback() {
+
+					setTimeout(function() {
+						window.location.href = "../../menu.html"
+					}, 200);
+				}
+
+				function leftLoad(list, index) {
+					$(".neirong").load('temple/' + list + '/one/' + index + '.html', function() {
+						setTimeout(function() {
+							document.querySelector(".neirong").style.opacity = 1;
+						}, 500);
+					});
+				}
+
+				function rightLoad(list) {
+					$(".lb_pic").load('temple/' + list + '/list/list.html', function() {
+						$(".lb_pic a").click(function() {
+							var childIndex = $(".lb_pic a").index(this);
+							document.querySelector(".neirong").style.opacity = 0;
+							setTimeout(function(){
+								leftLoad(index, childIndex);
+							},500);
+						});
+					});
+				}
+			</script>
+	</body>
+<script type="text/javascript" src="../../js/pingbao.js"></script>
+</html>

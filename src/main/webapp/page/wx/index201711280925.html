@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="chn">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>公众号消息</title>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<!-- 删除苹果默认的工具栏和菜单栏 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<!-- 设置苹果工具栏颜色 -->
+		<meta name="format-detection" content="telephone=no, email=no" />
+		<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+
+		<link rel="stylesheet" type="text/css" href="css/news.css">
+		<link rel="stylesheet" type="text/css" href="css/self.css" />
+
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<style type="text/css">
+			.con img {
+				width: 90%;
+			}
+		</style>
+	</head>
+
+	<body onload="hp(0)" class="">
+		<div class="box">
+			<div class="left_main">
+				<div class="neirong" id="nr_id001">
+					<div class="title">
+						<h1></h1>
+					</div>
+					<div class="con">
+						<div class="rich_media_content " id="js_content">
+							<section data-role="outer" label="Powered by 135editor.com" style="font-size:16px;">
+								<section class="" data-tools="135编辑器" data-id="89297" style="border: 0px none;box-sizing: border-box;">
+									<section style="margin: 5px;box-shadow: rgb(126, 155, 61) 0px 0px 3px;">
+										<section class="" style="color: rgb(126, 155, 61);line-height: 1.6em;letter-spacing: 2px;font-size: 14px;white-space: normal;margin-right: auto;margin-left: auto;padding: 15px 10px;box-sizing: border-box;">
+											<p style="text-align: justify;text-indent: 2em;margin-bottom: 10px;line-height: 1.75em;">
+												<span id="section_content" style="font-size: 16px;">
+													
+												</span>
+											</p>											
+										</section>
+										
+										<section style="margin-right: auto;margin-left: auto;text-align: center;line-height: 0px !important;">
+											<img id="section_img" src=""  class=""  style="width: 800px !important; height: auto !important; visibility: visible !important;"/>
+										</section>							
+									</section>
+								</section>
+								<p><br></p>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right_main">
+				<h3>公众号消息</h3>
+				<div class="pt">
+					<div class="lb_pic">
+
+					</div>
+				</div>
+			</div>
+			<div class="footer">
+				<a class="xz" onclick="hp(0)">公众号消息</a>
+
+				<div class="fh" onclick="hpback(4)">
+					<a class="fhcd" href="javascript:;">返回菜单</a>
+				</div>
+			</div>
+			<div id="biaoJi" style="z-index:10;width:200px;position:absolute;bottom: 70px;background-color: #004477;border-radius:20px;height: 40px;"></div>
+			<div id="dataTitle" style="display: none">
+
+			</div>
+			<div id="dataContent" style="display: none;">
+				
+			</div>
+			<script type="text/javascript">
+				var index = 0;
+				var firstLoadName = "2017112401"; //首次加载文章html名称
+				function hp(changeIndex) {
+					document.querySelector(".right_main").style.height = "0px";
+					document.querySelector(".neirong").style.opacity = 0;
+					index = changeIndex;
+					//leftLoad(index, firstLoadName);
+					//rightLoad(index);
+					var ary = document.querySelector(".footer").querySelectorAll("a");
+					for(var i = 0; i < ary.length - 1; i++) {
+						if(i == index) {
+							ary[i].className = "xz";
+						} else {
+							ary[i].className = "";
+						}
+					}
+					var obj = document.querySelector(".footer").querySelectorAll("a")[index]
+					var _style = getStyle(obj);
+					var _width = _style.width;
+					var _left = getLeft(obj)
+					document.getElementById("biaoJi").style.width = _width;
+					document.getElementById("biaoJi").style.left = _left + "px";
+
+					setTimeout(function() {
+						document.querySelector(".right_main").querySelector("h3").innerHTML = ary[index].innerHTML;
+						document.querySelector(".right_main").style.height = "100%";
+					}, 1000);
+
+				}
+
+				function getTop(o) {
+					var offTop = o.offsetTop;
+					if(o.offsetParent) {
+						offTop += arguments.callee(o.offsetParent);
+					}
+					return offTop;
+				}
+
+				function getLeft(o) {
+					var offLeft = o.offsetLeft;
+					if(o.offsetParent) {
+						offLeft += arguments.callee(o.offsetParent);
+					}
+					return offLeft;
+				}
+
+				function getStyle(o) {
+					return o.currentStyle || window.getComputedStyle(o, null);
+				}
+
+				function hpback() {
+
+					setTimeout(function() {
+						window.location.href = "../../menu.html"
+					}, 200);
+				}
+
+				function leftLoad(list, index) {
+					$(".neirong").load('temple/' + list + '/one/' + index + '.html', function() {
+						setTimeout(function() {
+							document.querySelector(".neirong").style.opacity = 1;
+						}, 500);
+					});
+				}
+
+				function rightLoad(list) {
+					$(".lb_pic").load('temple/' + list + '/list/list.html', function() {
+						$(".lb_pic a").click(function() {
+							var _this = $(this);
+							var _name = _this.attr("name");
+							var childIndex = ($(".lb_pic a").length - 1) - ($(".lb_pic a").index(this));
+							document.querySelector(".neirong").style.opacity = 0;
+							setTimeout(function() {
+								leftLoad(index, _name);
+							}, 500);
+						});
+					});
+				}
+			</script>
+	</body>
+	<script type="text/javascript" src="../../js/pingbao.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var currentJSON = {};
+			var selectId = "";
+			var r = Math.random();
+			$.getJSON('data/data.txt', function(data) {
+				console.log("data", data);
+				currentJSON = data;
+				var rightTxt = "";
+				var leftTxt = "";
+				$.each(data.list, function(i, v) {
+					var current = new Date()
+					current.setTime(v["comm_msg_info"]["datetime"] * 1000);
+					var year = current.getFullYear();
+					var month = current.getMonth();
+					var day = current.getDate();
+					var imgSrc = v["app_msg_ext_info"]["cover"];
+					//imgSrc = imgSrc.replace("http:","https:");
+					rightTxt += '<div class="topic">';
+					rightTxt += '<a href="javascript:;" onclick="showOne(' + v["comm_msg_info"]["id"] + ',\''+v["app_msg_ext_info"]["cover"]+'\')" name="2017112402">';
+					rightTxt += '<div class="picture">';
+					rightTxt += '<img src="' + imgSrc + '">';
+					rightTxt += '<div class="title2 xz">';
+					rightTxt += v["app_msg_ext_info"]["title"];
+					rightTxt += '</div><div class="nr">宁夏水务投资集团有限公司<span>' + year + '-' + (month + 1) + '-' + day + '</span></div></div></a></div>';
+					if(i==0){
+						var imgTxt = v["app_msg_ext_info"]["cover"];
+						showOne(v["comm_msg_info"]["id"],imgTxt);
+					}
+				});
+				$(".lb_pic").html(rightTxt);
+			});
+		});
+		
+		function showOne(txtId,imgId){
+			document.querySelector(".neirong").style.opacity = 0;
+			setTimeout(function(){
+				$("#dataTitle").load('data/' + txtId + '.title', function(result) {
+					document.querySelector(".title").querySelector("h1").innerHTML = document.getElementById("dataTitle").querySelector("h2").innerHTML;
+				});
+				
+				$("#dataContent").load('data/' + txtId + '.content',function(result){
+					var plist = document.getElementById("dataContent").querySelectorAll("p");
+					//var txtlist = new Array();
+					var temp = "";
+					for(var i =0 ;i< plist.length;i++){
+						var txt = plist[i].innerText;
+						if(txt.length>0){
+							//txtlist.push(txt);
+							temp += txt;
+						}
+					}
+					document.getElementById("section_content").innerHTML = temp;
+				});		
+				document.getElementById("section_img").setAttribute("src",imgId);
+				document.querySelector(".neirong").style.opacity = 1;
+			},500);
+		}
+
+		function showOneOther(txtId) {
+			document.querySelector(".neirong").style.opacity = 0;
+			setTimeout(function() {
+				$("#data").load('data/' + txtId + '.title', function(result) {
+					console.log(document.getElementById("data").querySelector("h2").innerHTML);
+					document.querySelector(".title").querySelector("h1").innerHTML = document.getElementById("data").querySelector("h2").innerHTML;
+					
+					$(".con").load('data/' + txtId + '.content', function(result) {
+						var imgList = document.querySelector(".con").querySelectorAll("img");
+						for(var i = 0; i < imgList.length; i++) {
+							var temp = imgList[i].getAttribute("data-src");
+							imgList[i].setAttribute("src", temp);
+							imgList[i].removeAttribute("data-src");
+							imgList[i].removeAttribute("style");
+						}
+					});
+					
+					setTimeout(function() {
+						document.querySelector(".neirong").style.opacity = 1;
+					}, 500);
+				});
+			}, 500);
+		}
+	</script>
+
+</html>
