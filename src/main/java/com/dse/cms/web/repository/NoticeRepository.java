@@ -13,7 +13,7 @@ import java.util.List;
  * @date 2017-12-04
  */
 @Repository
-public interface NoticeRepository extends JpaRepository<Notice,Long>{
+public interface NoticeRepository extends JpaRepository<Notice,Long> {
 
 
     List getNoticesByDeletedIsOrderByCreateTimeDesc(Integer deleted);
