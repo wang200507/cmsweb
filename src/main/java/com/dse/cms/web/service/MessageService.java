@@ -1,10 +1,14 @@
 package com.dse.cms.web.service;
 
 import com.dse.cms.web.entity.TbMessage;
+import com.dse.cms.web.framework.utils.Constants;
 import com.dse.cms.web.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,8 +28,13 @@ public class MessageService {
     }
 
     public List getList(){
-        return messageRepository.findAll();
+        return messageRepository.findAllByDeletedIs(Constants.DELETED_NO);
     }
 
+    public Page<TbMessage> listAll(Pageable page){
+        Page<TbMessage> pageList = messageRepository.findAllByDeletedIs(Constants.DELETED_NO,page);
+        return  pageList;
+
+    }
 
 }
