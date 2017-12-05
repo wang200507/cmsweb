@@ -16,4 +16,4 @@
 			window.location.href = "page/pb/index.html?id="+currentURL;
 		}
 	}, 1000)
-})(1000*2);
+})(1000*60*2);
