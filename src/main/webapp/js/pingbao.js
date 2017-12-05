@@ -13,7 +13,7 @@
 		var tempCurrent = new Date().getTime();
 		if(tempCurrent >= (current + timeout)) {
 			var currentURL = window.location.href;
-			window.location.href = "/web/page/pb/index.html?id="+currentURL;
+			window.location.href = "page/pb/index.html?id="+currentURL;
 		}
 	}, 1000)
 })(1000*60*2);
