@@ -38,7 +38,7 @@ jQuery(document).ready(function() {
 
 			navigationType:"bullet",					//bullet, thumb, none, both		(No Thumbs In FullWidth Version !)
 			navigationArrows:"verticalcentered",		//nexttobullets, verticalcentered, none
-			navigationStyle:"round",				//round,square,navbar
+			navigationStyle:"square",				//round,square,navbar
 
 			touchenabled:"on",						// Enable Swipe Function : on/off
 			onHoverStop:"on",						// Stop Banner Timet at Hover on Slide on/off
