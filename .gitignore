@@ -3,7 +3,7 @@
 .classpath
 .project
 .settings
-/.idea/workspace.xml
+/.idea
  ##filter databfile、sln file##
 *.mdb  
 *.ldb  
