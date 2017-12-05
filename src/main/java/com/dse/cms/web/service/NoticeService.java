@@ -17,7 +17,7 @@ import java.util.List;
 public class NoticeService {
 
     @Autowired
-    private NoticeRepository noticeRepository;
+    public NoticeRepository noticeRepository;
 
     public List getList(){
         List  list  = noticeRepository.getNoticesByDeletedIsOrderByCreateTimeDesc(Constants.DELETED_NO);
