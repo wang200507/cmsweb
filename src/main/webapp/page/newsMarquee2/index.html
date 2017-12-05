@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>跳马灯插件</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="css/newsMarquee.css" />
+</head>
+<body>
+	<div class="newsMarquee"></div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/util.js"></script>
+	<script src="../../config/config.js"></script>
+	<script src="js/jquery.newsMarquee.js"></script>
+	<script>
+		$(function() {
+		    $.ajax({
+				type: 'GET',
+				url: baseUrl + '/cmsweb/message/getList.do'
+			}).then(function (res) {
+			    var $newsMarquee = $('.newsMarquee');
+				var len = res.length;
+				var arr = [];
+				for (var i = 0; i < len; i++) {
+				    var li = '<li>'+ (i + 1) +'、<b>' + res[i].msgTitle + '</b>：<span>' + res[i].msgContent + '</span></li>';
+				    arr.push(li);
+				}
+                $newsMarquee.html('<ul>' + arr.join('') + '</ul>');
+                $newsMarquee.newsMarquee({
+                    moveDistance: 4,
+                    interval: 60
+                });
+            });
+		});
+	</script>
+</body>
+</html>
