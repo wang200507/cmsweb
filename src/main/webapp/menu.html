@@ -5,6 +5,7 @@
 		<meta charset="UTF-8">
 		<title>首页</title>
 		<link rel="stylesheet" href="css/awesome/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="css/iframe-newsMarquee.css" />
 		<style type="text/css">
 			* {
 				margin: 0px;
@@ -268,14 +269,6 @@
 			#erweima p span:last-child{
 				margin-left: 1em;
 			}
-			.newsMarquee {
-				position: fixed;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				height: 120px;
-				background-color: rgba(0, 0, 0, 0.5);
-			}
 		</style>
 	</head>
 
@@ -302,7 +295,7 @@
 				<p><span>聚合点滴</span><span>泽润生民</span></p>
 			</div>
 		</div>
-		<iframe class="newsMarquee" src="page/newsMarquee2/index.html" frameborder="0"></iframe>
+		<iframe id="newsMarquee" class="newsMarquee" src="page/newsMarquee2/index.html" frameborder="0"></iframe>
 	</body>
 	<script type="text/javascript" src="js/pingbao.js"></script>
 

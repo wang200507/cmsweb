@@ -15,5 +15,5 @@
 			var currentURL = window.location.href;
 			window.location.href = "/cmsweb/page/pb/index.html?id="+currentURL;
 		}
-	}, 1000)
+	}, 4000)
 })(10*60*2);

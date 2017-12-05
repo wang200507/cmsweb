@@ -19,17 +19,26 @@
 				type: 'GET',
 				url: baseUrl + '/cmsweb/message/getList.do'
 			}).then(function (res) {
+				var now = +new Date();
 			    var $newsMarquee = $('.newsMarquee');
 				var len = res.length;
 				var arr = [];
 				for (var i = 0; i < len; i++) {
-				    var li = '<li>'+ (i + 1) +'、<b>' + res[i].msgTitle + '</b>：<span>' + res[i].msgContent + '</span></li>';
-				    arr.push(li);
+                    if (now >= res[i].createTime && now <= res[i].endTime) {
+						var li = '<li>'+ (i + 1) +'、<b>' + res[i].msgTitle + '</b>：<span>' + res[i].msgContent + '</span></li>';
+						arr.push(li);
+                    }
 				}
+				if (!arr.length) {
+				    $(window.parent.frames['newsMarquee']).remove();
+				}
+                $newsMarquee.animate({
+					opacity: 1
+				}, 400);
                 $newsMarquee.html('<ul>' + arr.join('') + '</ul>');
                 $newsMarquee.newsMarquee({
                     moveDistance: 4,
-                    interval: 60
+                    interval: 30
                 });
             });
 		});
