@@ -108,10 +108,10 @@
 							ary[i].className = "";
 						}
 					}
-					var obj = document.querySelector(".footer").querySelectorAll("a")[index]
+					var obj = document.querySelector(".footer").querySelectorAll("a")[index];
 					var _style = getStyle(obj);
 					var _width = _style.width;
-					var _left = getLeft(obj)
+					var _left = getLeft(obj);
 					document.getElementById("biaoJi").style.width = _width;
 					document.getElementById("biaoJi").style.left = _left + "px";
 
@@ -192,9 +192,9 @@
 			$("#dataTitle").load('data/'+fileId+'.title',function(result){
 				document.querySelector(".title").querySelector("h1").innerHTML = document.getElementById("dataTitle").querySelector("h2").innerHTML;
 				document.querySelector(".title").querySelector("p").innerHTML = txttime+" 宁夏水务投资集团有限公司";
-				var plist = new Array();
-				var ptxt = new Array();
-				var imagestxt = new Array();
+				var plist = [];
+				var ptxt = [];
+				var imagestxt = [];
 				$("#dataContent").load('data/'+fileId+'.content',function(txt){
 					plist = document.getElementById("dataContent").querySelectorAll("p");
 					for(var i = 0;i<plist.length;i++){

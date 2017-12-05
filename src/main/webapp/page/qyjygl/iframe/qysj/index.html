@@ -83,12 +83,12 @@
 		</style>
 	</head>
 	<script type="text/javascript">
-		var points = new Array();
+		var points = [];
 		var mouseClick = function() {
 			var e = window.event || arguments.callee.caller.arguments[0];
 			points.push(e.clientX + "," + e.clientY);
 			console.log("points", points.toString());
-		}
+		};
 		var currentIndex = 1;
 		var selectCompany = function(index) {
 			if(true) {
@@ -100,9 +100,9 @@
 					currentIndex = index;
 				}, 1000);
 			}
-		}
+		};
 		var toastInformation = function(index) {
-			var e = window.event || arguments.callee.caller.arguments[0]
+			var e = window.event || arguments.callee.caller.arguments[0];
 			var o = e.target || e.srcElement;
 			console.log(o.parentNode.children);
 			if(index == 0) {

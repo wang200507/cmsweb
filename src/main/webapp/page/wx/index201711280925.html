@@ -95,10 +95,10 @@
 							ary[i].className = "";
 						}
 					}
-					var obj = document.querySelector(".footer").querySelectorAll("a")[index]
+					var obj = document.querySelector(".footer").querySelectorAll("a")[index];
 					var _style = getStyle(obj);
 					var _width = _style.width;
-					var _left = getLeft(obj)
+					var _left = getLeft(obj);
 					document.getElementById("biaoJi").style.width = _width;
 					document.getElementById("biaoJi").style.left = _left + "px";
 
@@ -171,7 +171,7 @@
 				var rightTxt = "";
 				var leftTxt = "";
 				$.each(data.list, function(i, v) {
-					var current = new Date()
+					var current = new Date();
 					current.setTime(v["comm_msg_info"]["datetime"] * 1000);
 					var year = current.getFullYear();
 					var month = current.getMonth();
