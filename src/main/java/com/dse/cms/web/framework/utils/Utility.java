@@ -75,11 +75,8 @@ public class Utility {
 		try {
 			if (_strData == null || _strData.length() <= 0)
 				return false;
-			if (_strData.startsWith("0")
-					|| _strData.toLowerCase().startsWith("false"))
-				return false;
-			else
-				return true;
+			return !(_strData.startsWith("0")
+					|| _strData.toLowerCase().startsWith("false"));
 		} catch (Exception e) {
 			return false;
 		}
@@ -495,8 +492,8 @@ public class Utility {
 		try {
 			String firstLetter = fieldName.substring(0, 1).toUpperCase();
 			String getter = "get" + firstLetter + fieldName.substring(1);
-			Method method = o.getClass().getMethod(getter, new Class[] {});
-			Object value = method.invoke(o, new Object[] {});
+			Method method = o.getClass().getMethod(getter);
+			Object value = method.invoke(o);
 			return value;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -616,10 +613,7 @@ public class Utility {
    public static boolean isDouble(String str){
 	   try{
 		   Double.parseDouble(str);
-		   if(str.contains(".")){
-			   return true;
-		   }
-		   return false;
+		   return str.contains(".");
 	   } catch (NumberFormatException e) {
 		   return false;
 	   }
