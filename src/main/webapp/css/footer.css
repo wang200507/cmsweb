@@ -1,0 +1,47 @@
+.footer{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: #13182e;
+    left: 0;
+    height: 94px;
+    overflow: visible;
+    z-index: 20;
+    font-size: 0;
+}
+.footer a{
+    position: relative;
+    z-index: 1;
+    width: 200px;
+    text-align: center;
+    color: #fff;
+    height: 94px;
+    line-height: 94px;
+    font-size: 30px;
+    font-family:'宋体';
+    background: linear-gradient(#029FA8, #004477);
+    display: inline-block;
+    border-left: 1px #0077AA solid;
+    border-radius: 5px;
+    margin-left: 0;
+    box-sizing: border-box;
+}
+.footer .xz{
+    background: linear-gradient(#004477, #029FA8);
+    border-radius: 0 0 5px 5px;
+}
+.footer .fhcd{
+    float: right;
+    background-color: #658;
+}
+
+.biaoJi {
+    width: 200px;
+    position: absolute;
+    bottom: 70px;
+    background-color: rgb(0, 68, 119);
+    border-radius: 20px;
+    height: 40px;
+    left:0;
+    transition: left 0.3s;
+}
