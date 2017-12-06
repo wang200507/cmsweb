@@ -19,6 +19,8 @@ public class WeChat {
 
 	private String html;//
 
+	private String author;//作者
+
 	private String imgformat;
 
 	private Byte[] images;
@@ -102,5 +104,13 @@ public class WeChat {
 
 	public void setImages(Byte[] images) {
 		this.images = images;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 }
