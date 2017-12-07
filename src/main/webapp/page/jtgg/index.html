@@ -37,59 +37,58 @@
 				<a href="../../menu.html" class="fhcd">返回菜单</a>
 				<div class="biaoJi"></div>
 			</div>
+		</div>
 
-			<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-			<script type="text/javascript" src="../../js/vue.min.js"></script>
-			<script type="text/javascript" src="../../js/pingbao.js"></script>
-			<script type="text/javascript" src="../../js/footer.js"></script>
-			<script>
-				new Vue({
-					el: '#box',
-					data: function() {
-					  return {
-					      items: [],
-						  current: 0
-					  }
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="../../js/vue.min.js"></script>
+		<script type="text/javascript" src="../../js/pingbao.js"></script>
+		<script type="text/javascript" src="../../js/footer.js"></script>
+		<script>
+			new Vue({
+				el: '#box',
+				data: function() {
+				  return {
+					  items: [],
+					  current: 0
+				  }
+				},
+				methods: {
+					toggle: function (index) {
+						this.current = index;
 					},
-					methods: {
-					    toggle: function (index) {
-							this.current = index;
-                        },
-                        formatTime: function (time) {
-                            if (typeof time === 'number') {
-                                var date = new Date(time);
-                                var year = date.getFullYear();
-                                var month = date.getMonth() + 1;
-                                var day = date.getDate();
-                                if (year) {
-                                    var res = year + '-' + month + '-' + day;
-								}
+					formatTime: function (time) {
+						if (typeof time === 'number') {
+							var date = new Date(time);
+							var year = date.getFullYear();
+							var month = date.getMonth() + 1;
+							var day = date.getDate();
+							if (year) {
+								var res = year + '-' + month + '-' + day;
 							}
-							return res || ''
-                        },
-						getData: function () {
-							  var _this = this;
-							  $.ajax({
-									type: 'GET',
-									url: 'http://127.0.0.1:8082/cmsweb/notice/getList.do',
-							  }).then(function (res) {
-								  //console.log(JSON.stringify(res,null,2))
-								  res.forEach(function(item, index) {
-									  item.createTime = _this.formatTime(item.createTime);
-								  });
-								  _this.items = res;
-							  }, function (err) {
-								  console.log(err)
-							  });
 						}
+						return res || ''
 					},
-					created: function () {
-					    this.$nextTick(function () {
-                            this.getData();
-                        });
-
-                    }
-				});
-			</script>
+					getData: function () {
+						  var _this = this;
+						  $.ajax({
+								type: 'GET',
+								url: 'http://127.0.0.1:8082/cmsweb/notice/getList.do',
+						  }).then(function (res) {
+							  res.forEach(function(item, index) {
+								  item.createTime = _this.formatTime(item.createTime);
+							  });
+							  _this.items = res;
+						  }, function (err) {
+							  console.log(err)
+						  });
+					}
+				},
+				created: function () {
+					this.$nextTick(function () {
+						this.getData();
+					});
+				}
+			});
+		</script>
 	</body>
 </html>
