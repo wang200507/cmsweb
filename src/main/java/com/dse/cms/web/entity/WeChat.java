@@ -3,7 +3,7 @@ package com.dse.cms.web.entity;
 import javax.persistence.*;
 
 @Cacheable
-@Table(name="SSSP_WECHAT")
+@Table(name="TB_WECHAT")
 @Entity
 public class WeChat {
 
@@ -47,7 +47,7 @@ public class WeChat {
 	}
 
 	@Basic
-	@Column(name = "tb_url", nullable = true, length = 150)
+	@Column(name = "tb_url", nullable = true, length = 500)
 	public String getUrl() {
 		return url;
 	}
@@ -66,8 +66,8 @@ public class WeChat {
 		this.title = title;
 	}
 
-	@Basic
-	@Column(name = "tb_content", nullable = true, length = 500)
+	@Lob
+	@Column(name = "tb_content", nullable = true)
 	public String getContent() {
 		return content;
 	}
