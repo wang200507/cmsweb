@@ -6,20 +6,18 @@
 		<link rel="stylesheet" type="text/css" href="css/news.css">
 		<link rel="stylesheet" type="text/css" href="css/self.css" />
 		<link rel="stylesheet" href="../../css/footer.css">
+		<link rel="stylesheet" href="../../css/cms-animate.css">
 	</head>
 	<body>
 		<div class="box" id="box">
 			<div class="left_main">
-				<div class="neirong" id="nr_id001">
-
-				</div>
+				<div class="neirong fadeIn" v-for="(item, index) in items" v-html="item.content" v-show="index===current"></div>
 			</div>
 			<div class="right_main">
 				<h3>集团公告</h3>
 				<div class="pt">
-					<div class="lb_pic">
-
-						<div class="topic" v-for="item in items">
+					<div class="lb_pic slide">
+						<div class="topic" v-for="(item, index) in items" @click="toggle(index)">
 							<a href="#">
 								<div class="picture">
 									<img src="img/tz.jpg">
@@ -30,19 +28,6 @@
 								</div>
 							</a>
 						</div>
-
-						<div class="topic">
-							<a href="#">
-								<div class="picture">
-									<img src="img/gg.jpg">
-									<div class="title2 xz">
-										宁夏水务投资集团公司2014年群众评议部门和领导人员作风表
-									</div>
-									<div class="nr"> <span>2014-08-12 </span></div>
-								</div>
-							</a>
-						</div>
-
 					</div>
 				</div>
 			</div>
@@ -62,24 +47,47 @@
 					el: '#box',
 					data: function() {
 					  return {
-					      items: []
+					      items: [],
+						  current: 0
 					  }
 					},
 					methods: {
-					  getData: function () {
-						  $.ajax({
-								type: 'GET',
-							  	url: 'http://10.100.50.160:8081/cmsweb/notice/getList.do',
-						  }).then(function (res) {
-							  console.log(res)
-							  this.items = res;
-                          }, function (err) {
-							  console.log(err)
-                          });
-                      }
+					    toggle: function (index) {
+							this.current = index;
+                        },
+                        formatTime: function (time) {
+                            if (typeof time === 'number') {
+                                var date = new Date(time);
+                                var year = date.getFullYear();
+                                var month = date.getMonth() + 1;
+                                var day = date.getDate();
+                                if (year) {
+                                    var res = year + '-' + month + '-' + day;
+								}
+							}
+							return res || ''
+                        },
+						getData: function () {
+							  var _this = this;
+							  $.ajax({
+									type: 'GET',
+									url: 'http://127.0.0.1:8082/cmsweb/notice/getList.do',
+							  }).then(function (res) {
+								  //console.log(JSON.stringify(res,null,2))
+								  res.forEach(function(item, index) {
+									  item.createTime = _this.formatTime(item.createTime);
+								  });
+								  _this.items = res;
+							  }, function (err) {
+								  console.log(err)
+							  });
+						}
 					},
 					created: function () {
-						this.getData();
+					    this.$nextTick(function () {
+                            this.getData();
+                        });
+
                     }
 				});
 			</script>
