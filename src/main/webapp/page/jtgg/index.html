@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>企业经营管理</title>
-		<link rel="stylesheet" type="text/css" href="css/news.css">
-		<link rel="stylesheet" type="text/css" href="css/self.css" />
+		<link rel="stylesheet" href="../../css/news.css">
+		<link rel="stylesheet" href="../../css/self.css">
 		<link rel="stylesheet" href="../../css/footer.css">
 		<link rel="stylesheet" href="../../css/cms-animate.css">
 	</head>
@@ -20,7 +20,7 @@
 						<div class="topic" v-for="(item, index) in items" @click="toggle(index)">
 							<a href="#">
 								<div class="picture">
-									<img src="img/tz.jpg">
+									<img src="img/gg.jpg">
 									<div class="title2 xz">
 										{{item.title}}
 									</div>
@@ -33,16 +33,16 @@
 			</div>
 
 			<div class="footer">
-				<a href="iframe/qyzl/index.html" class="xz">集团公告</a>
+				<a href="" class="xz">集团公告</a>
 				<a href="../../menu.html" class="fhcd">返回菜单</a>
 				<div class="biaoJi"></div>
 			</div>
 		</div>
 
-		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-		<script type="text/javascript" src="../../js/vue.min.js"></script>
-		<script type="text/javascript" src="../../js/pingbao.js"></script>
-		<script type="text/javascript" src="../../js/footer.js"></script>
+		<script src="../../js/jquery-1.9.1.js"></script>
+		<script src="../../js/vue.min.js"></script>
+		<script src="../../js/pingbao.js"></script>
+		<script src="../../js/footer.js"></script>
 		<script>
 			new Vue({
 				el: '#box',
@@ -84,9 +84,7 @@
 					}
 				},
 				created: function () {
-					this.$nextTick(function () {
-						this.getData();
-					});
+					this.getData();
 				}
 			});
 		</script>
