@@ -242,6 +242,7 @@
 			<artifactId>logback-ext-spring</artifactId>
 			<version>0.1.4</version>
 		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>

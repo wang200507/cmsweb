@@ -3,7 +3,7 @@ package com.dse.cms.web.entity;
 import javax.persistence.*;
 
 @Cacheable
-@Table(name="SSSP_WECHATIMAGE")
+@Table(name="TB_WECHATIMAGE")
 @Entity
 public class WeChatImage {
 

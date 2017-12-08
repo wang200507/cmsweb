@@ -43,6 +43,7 @@
 		<script src="../../js/vue.min.js"></script>
 		<script src="../../js/pingbao.js"></script>
 		<script src="../../js/footer.js"></script>
+		<script src="../../config/config.js"></script>
 		<script>
 			new Vue({
 				el: '#box',
@@ -72,7 +73,7 @@
 						  var _this = this;
 						  $.ajax({
 								type: 'GET',
-								url: 'http://127.0.0.1:8082/cmsweb/notice/getList.do',
+								url: baseUrl+'/cmsweb/notice/getList.do',
 						  }).then(function (res) {
 							  res.forEach(function(item, index) {
 								  item.createTime = _this.formatTime(item.createTime);
