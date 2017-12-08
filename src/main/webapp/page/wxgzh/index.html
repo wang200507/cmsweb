@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="../../css/footer.css">
 	<link rel="stylesheet" href="../../css/item.css">
 	<link rel="stylesheet" href="../../css/cms-animate.css">
-	<style>
+	<!--<style>
 		iframe {
 			position: absolute;
 			top: 0;
@@ -19,10 +19,10 @@
 			height: 100%;
 			background-color: white;
 		}
-	</style>
+	</style>-->
 </head>
 <body>
-	<div class="box clearfix" id="box">
+	<div class="box clearfix" id="box" v-cloak>
 		<div class="left_main">
 			<div v-for="content">
 				<h1>{{content.title}}</h1>
@@ -68,6 +68,8 @@
         var baseUrl = 'https://mp.weixin.qq.com';
         var sogouSearchUrl = 'http://weixin.sogou.com/weixin?query=';
         var json = '&f=json';
+        var sItems_key = 'sItems_key';
+        var sContent_key = 'sContent_key';
 
 		new Vue({
 			el: '#box',
@@ -88,6 +90,7 @@
 						if (typeof res === 'object') {
 							res.ori_create_time = _this.formatTime(res.ori_create_time)
 						    _this.content = res;
+                            _this.setCache(sContent_key, JSON.stringify(res));
 						}
                     }, function (err) {
 						console.log(err)
@@ -120,10 +123,6 @@
 						type: 'GET',
 						url: sogouSearchUrl + queryName
 					}).then(function(res) {
-					    /*if (res.search('<!DOCTYPE HTML>') > -1) {
-							$('html').html(res);
-						}*/
-					    console.log(res)
 						var reg = /<.*account_name_0.*>/;
 						var queryNameLink = res.match(reg)[0];
 						var queryNameHref = $(queryNameLink).attr('href');
@@ -164,19 +163,39 @@
 									});
 								}
 							});
-                            _this.getContent(items[0].content_url);
 							_this.items = items;
+                            _this.getContent(items[0].content_url);
+							_this.setCache(sItems_key, JSON.stringify(items));
 						});
 					});
-				}
+				},
+				setCache: function (key, value) {
+					window.localStorage.setItem(key, value);
+                },
+				getCache: function (key) {
+                    return window.localStorage.getItem(key);
+                }
 			},
 			created: function () {
 			    var _this = this;
-			    var interval = 1 * 60 * 60 * 1000;
-				this.getData();
-				setInterval(function () {
-					_this.getData();
-                }, interval)
+			    var sCachedItems = this.getCache(sItems_key);
+			    if (sCachedItems) {
+			        this.items = JSON.parse(sCachedItems);
+                    var oContent_key = this.getCache(sContent_key);
+			        if (oContent_key) {
+						this.content = JSON.parse(oContent_key);
+					}
+                    var interval = 1 * 60 * 60 * 1000;
+                    if (this.timer) {
+                        clearInterval(this.timer);
+                    }
+                    this.timer = setInterval(function () {
+                        _this.getData();
+                    }, 10000)
+			        return;
+				} else {
+                    this.getData();
+				}
 			}
 		});
 	</script>

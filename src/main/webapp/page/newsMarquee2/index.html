@@ -24,9 +24,10 @@
 					var $newsMarquee = $('.newsMarquee');
 					var len = res.length;
 					var arr = [];
+					var orderNumber = 1;
 					for (var i = 0; i < len; i++) {
 						if (now >= res[i].startTime && now <= res[i].endTime) {
-							var li = '<li>'+ (i + 1) +'、<b>' + res[i].msgTitle + '</b>：<span>' + res[i].msgContent + '</span></li>';
+							var li = '<li>'+ (orderNumber++) +'、<b>' + res[i].msgTitle + '</b>：<span>' + res[i].msgContent + '</span></li>';
 							arr.push(li);
 						}
 					}
