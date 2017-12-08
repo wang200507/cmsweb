@@ -89,15 +89,22 @@
 							<!--<value>application/x-www-form-urlencoded;charset=UTF-8</value>  -->
 						</list>
 					</property>
-					<!--
 					<property name="objectMapper">
 		                <bean class="com.fasterxml.jackson.databind.ObjectMapper">
-		                    <property name="serializationInclusion">
-		                        <value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
-		                    </property>
+							<!-- 时间格式转换 -->
+							<property name="dateFormat">
+								<bean class="java.text.SimpleDateFormat">
+									<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>
+								</bean>
+							</property>
+							<property name="serializationInclusion">
+								<value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
+							</property>
+							<!--<property name="serializationInclusion">
+                                <value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
+                            </property>-->
 		                </bean>
 		            </property>
-					 -->
 				</bean>
 			</list>
 		</property>
