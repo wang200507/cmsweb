@@ -100,8 +100,6 @@
 						    _this.content = res;
                             _this.setCache(sContent_key, JSON.stringify(res));
 						}
-                    }, function (err) {
-						console.log(err)
                     });
                 },
 				toggle: function (index) {
@@ -137,13 +135,11 @@
                             var $submit = $contentDocument.find('#submit');
                             $submit.on('click', function () {
                                 $codePage.on('load', function () {
-                                    console.log('输完公众号验证码')
                                     $codePage.css('visibility', 'hidden');
                                 });
                             });
 						});
                     }
-                    console.log(matchRes)
                 },
                 showGZHlistCodePage: function (matchRes) {
                     if (JSON.stringify(matchRes) === '{}') {
@@ -155,13 +151,11 @@
                             var $submit = $contentDocument.find('#bt');
                             $submit.on('click', function () {
                                 $codePage.on('load', function () {
-                                    console.log('输完公众号列表信息验证码')
                                     $codePage.css('visibility', 'hidden');
 								});
                             });
                         });
                     }
-                    console.log(matchRes)
                 },
 				getData: function () {
 				    var _this = this;
