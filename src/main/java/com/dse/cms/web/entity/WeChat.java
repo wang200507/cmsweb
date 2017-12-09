@@ -23,7 +23,10 @@ public class WeChat {
 
 	private String imgformat;
 
-	private Byte[] images;
+	private byte[] images;
+
+	@Transient
+	private String imgUrl ;
 
 	@GeneratedValue
 	@Id
@@ -98,11 +101,11 @@ public class WeChat {
 
 	@Lob
 	@Column(name = "tb_images", nullable = true)
-	public Byte[] getImages() {
+	public byte[] getImages() {
 		return images;
 	}
 
-	public void setImages(Byte[] images) {
+	public void setImages(byte[] images) {
 		this.images = images;
 	}
 
@@ -112,5 +115,13 @@ public class WeChat {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 }

@@ -1,21 +1,30 @@
 package com.dse.cms.web.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Cacheable
 @Table(name="TB_WECHATIMAGE")
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 @Entity
-public class WeChatImage {
+public class WeChatImage implements Serializable {
 
 	private Integer id;
 
+	@JsonInclude(JsonInclude.Include.NON_EMPTY)
 	private WeChat weChat;
 
 	private String url;
 
 	private String imgformat;
 
-	private Byte[] images;
+	private byte[] images;
+
+	@Transient
+	private String imgUrl ;
 
 	@GeneratedValue
 	@Id
@@ -60,11 +69,19 @@ public class WeChatImage {
 
 	@Lob
 	@Column(name = "tb_images", nullable = true)
-	public Byte[] getImages() {
+	public byte[] getImages() {
 		return images;
 	}
 
-	public void setImages(Byte[] images) {
+	public void setImages(byte[] images) {
 		this.images = images;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 }
