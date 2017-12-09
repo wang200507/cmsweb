@@ -8,6 +8,8 @@ import com.dse.cms.web.repository.WechatImageRepository;
 import com.dse.cms.web.repository.WechatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -25,38 +27,40 @@ public class WeChatService {
     private WechatImageRepository wechatImageRepository;
 
 
-    public List<WeChat> getWeChatList(String startDate , String  endDate){
-//       String basePath  = HttpServletRequest.getRequestURI();
+
+    public List<WeChat> getWeChatList(HttpServletRequest request,String startDate , String  endDate){
         List<WeChat> list = wechatRepository.getWeChatsList(startDate,endDate);
-//        List<WeChat> list = wechatRepository.findAll();
-        String imgpath = Config.getString("upload.root.path");
+        // 取到项目部署的绝对路径
+        String basePath =  request.getSession().getServletContext().getRealPath("/");
+        String imagePath  = "/img/wx/";
+//        String imgpath = Config.getString("upload.root.path");
         if(list.size() > 0 ){
             for (WeChat weChat : list){
                 byte[] bytes= weChat.getImages() ;
-                String imgUrl = imgpath+weChat.getId()+".jpg";
-                ImageUtil.readBin2Image(ImageUtil.byte2Input(bytes),imgUrl);
+                String imgageName = weChat.getId()+".jpg";
+                ImageUtil.readBin2Image(ImageUtil.byte2Input(bytes),basePath+imagePath+imgageName);
                 weChat.setImages(null);
-                weChat.setImgUrl(imgUrl);
+                weChat.setImgUrl(imagePath+imgageName);
 
             }
         }
         return  list;
     }
 
-    public List getImagesByWechat(Integer weChatId){
+    public List getImagesByWechat(HttpServletRequest request,Integer weChatId){
 
+        String basePath =  request.getSession().getServletContext().getRealPath("/");
+        String imagePath  = "/img/wx/";
         List<WeChatImage> list = wechatImageRepository.getWeChatImages(weChatId);
-        String imgpath = Config.getString("upload.root.path");
+//        String imgpath = Config.getString("upload.root.path");
         if(list.size() > 0 ){
             for (WeChatImage weChatImage : list){
                 byte[] bytes= weChatImage.getImages() ;
-
-                String imgUrl = imgpath+weChatImage.getWeChat().getId()+"_"+weChatImage.getId()+".jpg";
-                ImageUtil.readBin2Image(ImageUtil.byte2Input(bytes),imgUrl);
+                String imgageName = weChatImage.getWeChat().getId()+"_"+weChatImage.getId()+".jpg";
+                ImageUtil.readBin2Image(ImageUtil.byte2Input(bytes),basePath+imagePath+imgageName);
                 weChatImage.setImages(null);
                 weChatImage.setWeChat(null);
-                weChatImage.setImgUrl(imgUrl);
-
+                weChatImage.setImgUrl(imagePath+imgageName);
             }
         }
 

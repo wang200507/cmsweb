@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,11 +34,10 @@ public class WeChatController {
      */
     @RequestMapping("/getWechatList")
     @ResponseBody
-    public DseResult getList(){
+    public DseResult getList(HttpServletRequest request){
         DseResult result = null ;
         try {
-//            List list = weChatService.getWeChatList(DateUtil.getNowDate(),DateUtil.dateToString(DateUtil.dateIncreaseByDay(DateUtil.getNowDate(),-10)));
-            result = DseResult.success(weChatService.getWeChatList(DateUtil.dateToString(DateUtil.dateIncreaseByDay(DateUtil.getNowDate(),-10)),DateUtil.dateToString(DateUtil.getNowDate())));
+            result = DseResult.success(weChatService.getWeChatList(request,DateUtil.dateToString(DateUtil.dateIncreaseByDay(DateUtil.getNowDate(),-10)),DateUtil.dateToString(DateUtil.getNowDate())));
         }catch (Exception e){
             e.printStackTrace();
             result = DseResult.faild("获取数据失败");
@@ -47,13 +47,13 @@ public class WeChatController {
 
     @RequestMapping("/getWechatImages")
     @ResponseBody
-    public DseResult getWechatImages(String id){
+    public DseResult getWechatImages(HttpServletRequest request,String id){
         DseResult result = null ;
         if (Utility.isEmpty(id)){
             return DseResult.faild("id不能为空！");
         }
         try {
-            result = DseResult.success(weChatService.getImagesByWechat(Integer.valueOf(id)));
+            result = DseResult.success(weChatService.getImagesByWechat(request,Integer.valueOf(id)));
         }catch (Exception e){
             e.printStackTrace();
             result = DseResult.faild("获取数据失败");
