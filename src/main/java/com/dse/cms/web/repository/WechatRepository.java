@@ -21,4 +21,6 @@ public interface WechatRepository extends JpaRepository<WeChat,Integer>{
 
 
     List<WeChat> findAll();
+
+//    WeChat getById();
 }

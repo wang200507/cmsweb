@@ -2,13 +2,14 @@ package com.dse.cms.web.service;
 
 import com.dse.cms.web.entity.WeChat;
 import com.dse.cms.web.entity.WeChatImage;
-import com.dse.cms.web.framework.utils.Config;
 import com.dse.cms.web.framework.utils.ImageUtil;
+import com.dse.cms.web.framework.utils.Utility;
 import com.dse.cms.web.repository.WechatImageRepository;
 import com.dse.cms.web.repository.WechatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.rmi.CORBA.Util;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -63,11 +64,21 @@ public class WeChatService {
                 weChatImage.setImgUrl(imagePath+imgageName);
             }
         }
-
         return list ;
-
     }
 
+    public WeChat getWechatInfoById(HttpServletRequest request,Integer id){
+        WeChat weChat = null;
+        if(Utility.isNotEmpty(id)){
+           weChat = wechatRepository.findOne(id);
+           if(Utility.isNotEmpty(weChat) &&Utility.isNotEmpty(weChat.getId())){
+               List<WeChatImage> imageList = this.getImagesByWechat(request,id);
+               weChat.setImageList(imageList);
+           }
+
+        }
+        return weChat;
+    }
 
     public WeChat findById(Integer id){
         return wechatRepository.findOne(id);
