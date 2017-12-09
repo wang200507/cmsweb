@@ -61,4 +61,29 @@ public class WeChatController {
         return result ;
     }
 
+    /**
+     * 获取单个微信信息 包括图片信息
+     * @param request
+     * @param id
+     * @return
+     */
+    @RequestMapping("/getWechatById")
+    @ResponseBody
+    public DseResult getWechatById(HttpServletRequest request,String id){
+        DseResult result = null ;
+        if (Utility.isEmpty(id)){
+            return DseResult.faild("id不能为空！");
+        }
+
+        try {
+            result = DseResult.success(weChatService.getWechatInfoById(request,Integer.valueOf(id)));
+        }catch (Exception e){
+            e.printStackTrace();
+            result = DseResult.faild("获取数据失败");
+        }
+
+        return result;
+
+    }
+
 }
