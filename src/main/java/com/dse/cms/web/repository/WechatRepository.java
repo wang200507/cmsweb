@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public interface WechatRepository extends JpaRepository<WeChat,Integer>{
 
-    @Query("select t from WeChat t where  t.datetime  between ?1 and ?2")
+    @Query("select t from WeChat t where  t.datetime  between ?1 and ?2 order by t.datetime desc ")
     List<WeChat> getWeChatsList(String startDate,String endDate);
 
 
