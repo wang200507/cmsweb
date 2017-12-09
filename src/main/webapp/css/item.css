@@ -13,8 +13,11 @@
 
 .item .item-left {
     width: 150px;
-    min-width: 150px;
-    padding-right: 16px;
+    height: 96px;
+    margin-right: 16px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 .item .item-left img {

@@ -43,8 +43,8 @@
 			<h3>集团公告</h3>
 			<div class="slide">
 				<a :href="item.content_url" class="item" v-for="(item, index) in items" @click.prevent="getContent(item.content_url)">
-					<div class="item-left">
-						<img :src="item.cover" alt="">
+					<div class="item-left" :style="{'background-image': 'url(' + item.cover + ')'}">
+						<!--<img :src="item.cover" alt="">-->
 					</div>
 					<div class="item-right">
 						<h6 class="item-title">{{item.title}}</h6>
@@ -159,7 +159,6 @@
                 },
 				getData: function () {
 				    var _this = this;
-
 					$.ajax({
 						type: 'GET',
 						url: sogouSearchUrl + queryName
@@ -169,7 +168,6 @@
 						_this.showGZHcodePage(matchRes);
 						var queryNameLink = matchRes[0];
 						var queryNameHref = $(queryNameLink).attr('href');
-
 						$.ajax({
 							type: 'GET',
 							url: queryNameHref + json
@@ -179,7 +177,7 @@
 								var general_msg_list = JSON.parse(res.general_msg_list);
 							}
 							if (typeof general_msg_list === 'object') {
-                                var list = general_msg_list.list;
+                                var list = general_msg_list.list || [];
 							}
 							var items = [];
                             list.forEach(function (t1, index) {
@@ -221,10 +219,25 @@
 				getRandomTime: function (lowerValue, upperValue) {
                     var choices = upperValue - lowerValue + 1;
                     return Math.floor(Math.random() * choices + lowerValue);
+                },
+                randomInterval: function(lowerValue, upperValue) {
+                    var _this = this;
+                    var timer = null;
+                    var count = 1;
+                    if (timer) clearTimeout(timer);
+                    var intervalTime = this.getRandomTime(lowerValue, upperValue);
+                    console.log('第一次时间：', intervalTime)
+                    timer = setTimeout(function timeoutFun(){
+                        _this.getData();
+                        window.localStorage.setItem('count', count)
+                        var intervalTime = _this.getRandomTime(lowerValue, upperValue);
+                        console.log('其它的时间：', intervalTime)
+						console.log(count++)
+                        timer = setTimeout(timeoutFun, intervalTime);
+                    }, intervalTime);
                 }
 			},
 			created: function () {
-			    var _this = this;
 			    var sCachedItems = this.getCache(sItems_key);
 			    if (sCachedItems) {
 			        this.items = JSON.parse(sCachedItems);
@@ -232,13 +245,7 @@
 			        if (oContent_key) {
 						this.content = JSON.parse(oContent_key);
 					}
-                    if (this.timer) {
-                        clearInterval(this.timer);
-                    }
-                    this.timer = setInterval(function () {
-                        _this.getData();
-                    }, _this.getRandomTime(3 * 60 * 1000, 9 * 60 * 1000))
-			        return;
+                    this.randomInterval(6 * 60 * 60 * 1000, 8 * 60 * 60 * 1000);
 				} else {
                     this.getData();
 				}
