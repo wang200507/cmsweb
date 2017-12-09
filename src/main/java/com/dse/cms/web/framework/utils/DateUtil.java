@@ -669,7 +669,8 @@ public class DateUtil {
 		System.out.println(DateUtil.dateToString(timestamp1, "yyyy-MM-dd HH:mm:ss"));
 		
 		String timeString = "145878330486148288";
-		System.out.println(DateUtil.getNowDate());
+		System.out.println(DateUtil.stringToDate( "2017-02-01",DateUtil.DATE_FORMAT));
+
 	}
 
 }

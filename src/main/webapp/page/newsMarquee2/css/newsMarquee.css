@@ -59,6 +59,7 @@ body {
   position: relative;
   left: 100%;
   color: white;
+  white-space: nowrap;
 }
 .newsMarquee .horizontal li {
   display: inline-block;

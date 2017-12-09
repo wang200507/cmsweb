@@ -1,3 +1,4 @@
+/*
 !(function(timeout) {
 	
 	var current = new Date().getTime();
@@ -16,4 +17,4 @@
 			window.location.href = "/cmsweb/page/pb/index.html?id="+currentURL;
 		}
 	}, 1000)
-})(1000*60*2);
+})(1000*60*2);*/

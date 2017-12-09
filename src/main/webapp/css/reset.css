@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, #456f9f 0%,#232d4a 100%);
+    overflow: hidden;
+    font-family: 'Helvetica Neue',
+    'Helvetica',
+    'Arial',
+    'Hiragino Sans GB',
+    'STHeiti',
+    'Microsoft Yahei',
+    'WenQuanYi Micro Hei',
+    'sans-serif';
+}
+a {
+    text-decoration: none;
+    font-size: inherit;
+}

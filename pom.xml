@@ -12,7 +12,7 @@
 		<junit.version>4.12</junit.version>
 		<spring.version>4.0.0.RELEASE</spring.version>
 		<hibernate.version>4.2.4.Final</hibernate.version>
-		<jackson.version>2.1.5</jackson.version>
+		<jackson.version>2.7.5</jackson.version>
 		<mysql.jdbc.version>5.1.30</mysql.jdbc.version>
 	</properties>
 
@@ -137,6 +137,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>javax.servlet.jsp.jstl</groupId>
 			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
 			<version>1.2.1</version>
@@ -242,6 +248,15 @@
 			<artifactId>logback-ext-spring</artifactId>
 			<version>0.1.4</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-configuration/commons-configuration -->
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+			<version>1.10</version>
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<plugins>
