@@ -47,7 +47,10 @@
             font-weight: 400;
             font-size: 24px;
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2744a2686750786352fe9a1960bcf7173e23c158
         a {
             color: #607fa6;
             text-decoration: none;
@@ -100,8 +103,13 @@
         </div>
     </div>
     <div class="footer">
+<<<<<<< HEAD
         <a class="xz" href="">公众号消息</a>
         <a href="../../menu.html" class="fhcd">返回菜单</a>
+=======
+		<a class="xz"  href="" >公众号消息</a>
+		<a href="../../menu.html" class="fhcd">返回菜单</a>
+>>>>>>> 2744a2686750786352fe9a1960bcf7173e23c158
 
     </div>
     <div id="biaoJi"
@@ -126,6 +134,7 @@
         },
         methods: {
             getContent: function (id) {
+<<<<<<< HEAD
                 document.querySelector(".neirong").style.opacity = 0;
                 setTimeout(function () {
                     $.ajax({
@@ -166,6 +175,30 @@
                                         },500);
                                     })(i);
                                 }
+=======
+                $.ajax({
+                    type: 'GET',
+                    url: '/cmsweb/wechat/getWechatById.do?id='+id,
+                }).then(function (data) {
+                    if (data.status == 1) {
+                        var _content = $(".con");
+                        _content.empty();
+                        _content.append("<h2 class=\"rich_media_title\" >" + data.data.title + "</h2>");
+                        _content.append("<div id=\"meta_content\" class=\"rich_media_meta_list\">");
+
+                        _content.append("<em id=\"post-date\" class=\"rich_media_meta rich_media_meta_text\">");
+                        _content.append(data.data.datetime);
+                        _content.append("</em>");
+                        _content.append("<a class=\"rich_media_meta rich_media_meta_link rich_media_meta_nickname\" href=\"##\" id=\"post-user\">&nbsp;&nbsp;宁夏水务投资集团有限公司</a>");
+
+                        _content.append(data.data.html);
+                        var imglist = data.data["imageList"];
+                        var imgcontent = document.querySelector(".con").querySelectorAll("img");
+                        for(var i =0;i<imgcontent.length;i++){
+                            if(i<imglist.length){
+                                imgcontent[i].setAttribute("src","/cmsweb/"+imglist[i]["imgUrl"]);
+                                imgcontent[i].setAttribute("style","width: 95%;height: auto;");
+>>>>>>> 2744a2686750786352fe9a1960bcf7173e23c158
                             }
                         }
                     }, function (err) {
@@ -198,10 +231,17 @@
                 }).then(function (data) {
                     if (data.status == 1) {
                         _this.items = data.data;
+<<<<<<< HEAD
                         var firstId = data.data[0].id;
                         if (firstId != null && firstId != "") {
                             _this.getContent(firstId);
                         }
+=======
+                        var firstId =  data.data[0].id;
+                        if(firstId !=null && firstId != ""){
+                            _this.getContent(firstId);
+						}
+>>>>>>> 2744a2686750786352fe9a1960bcf7173e23c158
                     }
                 }, function (err) {
                     console.log(err)

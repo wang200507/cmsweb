@@ -20,7 +20,7 @@ public class NoticeService {
     public NoticeRepository noticeRepository;
 
     public List getList(){
-        List  list  = noticeRepository.getNoticesByDeletedIsOrderByCreateTimeDesc(Constants.DELETED_NO);
+        List  list  = noticeRepository.getNoticesByDeletedIsAndIsPubIsOrderByCreateTimeDesc(Constants.DELETED_NO,Constants.PUBLISH_YES);
         return list;
     }
 
