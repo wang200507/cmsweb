@@ -21,18 +21,6 @@
     <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="js/vue.min.js"></script>
     <style type="text/css">
-        .selfNeiRong {
-            color: rgb(126, 155, 61);
-            line-height: 1.6em;
-            letter-spacing: 2px;
-            font-size: 14px;
-            white-space: normal;
-            margin-right: auto;
-            margin-left: auto;
-            padding: 15px 10px;
-            box-sizing: border-box;
-        }
-
         .selfNeiRong p {
             text-align: justify;
             text-indent: 2em;
@@ -40,22 +28,10 @@
             line-height: 1.75em;
             font-size: 16px;
         }
-
-        .rich_media_title {
-            margin-bottom: 10px;
-            line-height: 1.4;
-            font-weight: 400;
-            font-size: 24px;
-        }
-<<<<<<< HEAD
-
-=======
->>>>>>> 2744a2686750786352fe9a1960bcf7173e23c158
         a {
             color: #607fa6;
             text-decoration: none;
         }
-
         .selfNeiRong img {
             width: 90%;
         }
@@ -70,19 +46,6 @@
                 <p style="text-align: right;"></p>
             </div>
             <div class="con">
-                <!--<div class="rich_media_content " id="js_content">-->
-                <!--<section data-role="outer" label="Powered by 135editor.com" style="font-size:16px;">-->
-                <!--<section class="" data-tools="135编辑器" data-id="89297"-->
-                <!--style="border: 0px none;box-sizing: border-box;">-->
-                <!--<section style="margin: 5px;box-shadow: rgb(126, 155, 61) 0px 0px 3px;">-->
-                <!--<section class="selfNeiRong">-->
-
-                <!--</section>-->
-                <!--</section>-->
-                <!--</section>-->
-                <!--<p><br></p>-->
-                <!--</section>-->
-                <!--</div>-->
             </div>
         </div>
     </div>
@@ -103,23 +66,10 @@
         </div>
     </div>
     <div class="footer">
-<<<<<<< HEAD
-        <a class="xz" href="">公众号消息</a>
+        <a class="xz" href="javascript:;">公众号消息</a>
         <a href="../../menu.html" class="fhcd">返回菜单</a>
-=======
-		<a class="xz"  href="" >公众号消息</a>
-		<a href="../../menu.html" class="fhcd">返回菜单</a>
->>>>>>> 2744a2686750786352fe9a1960bcf7173e23c158
-
     </div>
-    <div id="biaoJi"
-         style="z-index:10;width:200px;position:absolute;bottom: 70px;background-color: #004477;border-radius:20px;height: 40px;"></div>
-    <div id="dataTitle" style="display: none">
-
-    </div>
-    <div id="dataContent" style="display: none;">
-
-    </div>
+</div>
 </body>
 <script type="text/javascript" src="../../js/pingbao.js"></script>
 <script type="text/javascript" src="js/python.min.js"></script>
@@ -134,7 +84,6 @@
         },
         methods: {
             getContent: function (id) {
-<<<<<<< HEAD
                 document.querySelector(".neirong").style.opacity = 0;
                 setTimeout(function () {
                     $.ajax({
@@ -157,68 +106,32 @@
                             for (var i = 0; i < imgcontent.length; i++) {
                                 if (i < imglist.length) {
                                     imgcontent[i].setAttribute("style", "width: 95%;height: auto;");
-                                    var oldSrc =  imgcontent[i].getAttribute("data-src");
-                                    for(var k = 0;k<data.data.imageList.length;k++){
-                                        if(data.data.imageList[k]["url"].localeCompare(oldSrc)==0){
+                                    var oldSrc = imgcontent[i].getAttribute("data-src");
+                                    for (var k = 0; k < data.data.imageList.length; k++) {
+                                        if (data.data.imageList[k]["url"].localeCompare(oldSrc) == 0) {
                                             imgcontent[i].setAttribute("src", "/cmsweb/" + imglist[i]["imgUrl"]);
                                             break;
                                         }
                                     }
-                                    (function(index){
-                                        setTimeout(function(){
-                                           var imgObj =  document.querySelector(".con").querySelectorAll("img")[index];
+                                    (function (index) {
+                                        setTimeout(function () {
+                                            var imgObj = document.querySelector(".con").querySelectorAll("img")[index];
                                             var imgWidth = parseInt(imgObj.width);
                                             var imgNaturalWidth = parseInt(imgObj.naturalWidth);
-                                            if(imgWidth>imgNaturalWidth){
-                                                imgObj.style.width = imgNaturalWidth+"px";
+                                            if (imgWidth > imgNaturalWidth) {
+                                                imgObj.style.width = imgNaturalWidth + "px";
                                             }
-                                        },500);
+                                        }, 500);
                                     })(i);
                                 }
-=======
-                $.ajax({
-                    type: 'GET',
-                    url: '/cmsweb/wechat/getWechatById.do?id='+id,
-                }).then(function (data) {
-                    if (data.status == 1) {
-                        var _content = $(".con");
-                        _content.empty();
-                        _content.append("<h2 class=\"rich_media_title\" >" + data.data.title + "</h2>");
-                        _content.append("<div id=\"meta_content\" class=\"rich_media_meta_list\">");
-
-                        _content.append("<em id=\"post-date\" class=\"rich_media_meta rich_media_meta_text\">");
-                        _content.append(data.data.datetime);
-                        _content.append("</em>");
-                        _content.append("<a class=\"rich_media_meta rich_media_meta_link rich_media_meta_nickname\" href=\"##\" id=\"post-user\">&nbsp;&nbsp;宁夏水务投资集团有限公司</a>");
-
-                        _content.append(data.data.html);
-                        var imglist = data.data["imageList"];
-                        var imgcontent = document.querySelector(".con").querySelectorAll("img");
-                        for(var i =0;i<imgcontent.length;i++){
-                            if(i<imglist.length){
-                                imgcontent[i].setAttribute("src","/cmsweb/"+imglist[i]["imgUrl"]);
-                                imgcontent[i].setAttribute("style","width: 95%;height: auto;");
->>>>>>> 2744a2686750786352fe9a1960bcf7173e23c158
                             }
                         }
-                    }, function (err) {
+                    },function(err){
                         console.log(err)
                     });
-
                     /**
                      * 重新调整图片的大小
                      */
-//                    setTimeout(function(){
-//                        var listImage = document.querySelector(".con").querySelectorAll("img");
-//                        for(var i = 0;i<listImage.length;i++){
-//                            var imgWidth = parseInt(listImage[i].width);
-//                            var imgNaturalWidth = parseInt(listImage[i].naturalWidth);
-//                            if(imgWidth>imgNaturalWidth){
-//                                listImage[i].style.width = imgNaturalWidth+"px";
-//                            }
-//                        }
-//                    },1000);
-
                     document.querySelector(".neirong").style.opacity = 1;
                     document.querySelector(".neirong").scrollTop = "0px";
                 }, 1000);
@@ -231,17 +144,10 @@
                 }).then(function (data) {
                     if (data.status == 1) {
                         _this.items = data.data;
-<<<<<<< HEAD
                         var firstId = data.data[0].id;
                         if (firstId != null && firstId != "") {
                             _this.getContent(firstId);
                         }
-=======
-                        var firstId =  data.data[0].id;
-                        if(firstId !=null && firstId != ""){
-                            _this.getContent(firstId);
-						}
->>>>>>> 2744a2686750786352fe9a1960bcf7173e23c158
                     }
                 }, function (err) {
                     console.log(err)
@@ -251,6 +157,6 @@
         created: function () {
             this.getData();
         }
-    })
+    });
 </script>
 </html>
