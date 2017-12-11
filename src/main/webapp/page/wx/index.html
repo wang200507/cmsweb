@@ -32,7 +32,6 @@
             padding: 15px 10px;
             box-sizing: border-box;
         }
-
         .selfNeiRong p {
             text-align: justify;
             text-indent: 2em;
@@ -40,7 +39,16 @@
             line-height: 1.75em;
             font-size: 16px;
         }
-
+        .rich_media_title {
+            margin-bottom: 10px;
+            line-height: 1.4;
+            font-weight: 400;
+            font-size: 24px;
+        }
+        a {
+            color: #607fa6;
+            text-decoration: none;
+        }
         .selfNeiRong img {
             width: 90%;
         }
@@ -88,11 +96,9 @@
         </div>
     </div>
     <div class="footer">
-        <a class="xz" onclick="hp(0)">公众号消息</a>
+        <a class="xz"  href="" >公众号消息</a>
+        <a href="../../menu.html" class="fhcd">返回菜单</a>
 
-        <div class="fh" onclick="hpback(4)">
-            <a class="fhcd" href="javascript:;">返回菜单</a>
-        </div>
     </div>
     <div id="biaoJi"
          style="z-index:10;width:200px;position:absolute;bottom: 70px;background-color: #004477;border-radius:20px;height: 40px;"></div>
@@ -122,12 +128,21 @@
                 }).then(function (data) {
                     if (data.status == 1) {
                         console.log(data);
-                        $(".con").html(data.data.html);
+                        var _content = $(".con");
+                        _content.empty();
+                        _content.append("<h2 class=\"rich_media_title\" >" + data.data.title + "</h2>");
+                        _content.append("<div id=\"meta_content\" class=\"rich_media_meta_list\">");
+                        _content.append("<em id=\"post-date\" class=\"rich_media_meta rich_media_meta_text\">");
+                        _content.append(data.data.datetime);
+                        _content.append("</em>");
+                        _content.append("<a class=\"rich_media_meta rich_media_meta_link rich_media_meta_nickname\" href=\"##\" id=\"post-user\">&nbsp;&nbsp;宁夏水务投资集团有限公司</a>");
+                        _content.append(data.data.html);
                         var imglist = data.data["imageList"];
                         var imgcontent = document.querySelector(".con").querySelectorAll("img");
                         for(var i =0;i<imgcontent.length;i++){
                             if(i<imglist.length){
                                 imgcontent[i].setAttribute("src","/cmsweb/"+imglist[i]["imgUrl"]);
+                                imgcontent[i].setAttribute("style","width: 95%;height: auto;");
                             }
                         }
                     }
@@ -143,6 +158,10 @@
                 }).then(function (data) {
                     if (data.status == 1) {
                         _this.items = data.data;
+                        var firstId =  data.data[0].id;
+                        if(firstId !=null && firstId != ""){
+                            _this.getContent(firstId);
+                        }
                     }
                 }, function (err) {
                     console.log(err)
