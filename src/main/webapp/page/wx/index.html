@@ -105,7 +105,7 @@
                             var imgcontent = document.querySelector(".con").querySelectorAll("img");
                             for (var i = 0; i < imgcontent.length; i++) {
                                 if (i < imglist.length) {
-                                    imgcontent[i].setAttribute("style", "width: 95%;height: auto;");
+                                    imgcontent[i].setAttribute("style", "width: 95%;height: auto;margin-left: auto;margin-right: auto;");
                                     var oldSrc = imgcontent[i].getAttribute("data-src");
                                     for (var k = 0; k < data.data.imageList.length; k++) {
                                         if (data.data.imageList[k]["url"].localeCompare(oldSrc) == 0) {
