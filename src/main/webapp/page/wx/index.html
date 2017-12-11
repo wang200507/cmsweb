@@ -41,6 +41,17 @@
             font-size: 16px;
         }
 
+        .rich_media_title {
+            margin-bottom: 10px;
+            line-height: 1.4;
+            font-weight: 400;
+            font-size: 24px;
+        }
+        a {
+            color: #607fa6;
+            text-decoration: none;
+        }
+
         .selfNeiRong img {
             width: 90%;
         }
@@ -119,8 +130,17 @@
                     url: '/cmsweb/wechat/getWechatById.do?id='+id,
                 }).then(function (data) {
                     if (data.status == 1) {
-                       // console.log(data);
-                        $(".con").html(data.data.html);
+                        console.log(data);
+                        var _content = $(".con");
+                        _content.append("<h2 class=\"rich_media_title\" >").append(data.data.title).append("</h2>");
+                        _content.append("<div id=\"meta_content\" class=\"rich_media_meta_list\">");
+
+                        _content.append("<em id=\"post-date\" class=\"rich_media_meta rich_media_meta_text\">");
+                        _content.append(data.data.datetime);
+                        _content.append("</em>");
+                        _content.append("<a class=\"rich_media_meta rich_media_meta_link rich_media_meta_nickname\" href=\"##\" id=\"post-user\">宁夏水务投资集团有限公司</a>");
+
+                        _content.append(data.data.html);
                         var imglist = data.data["imageList"];
                         var imgcontent = document.querySelector(".con").querySelectorAll("img");
                         for(var i =0;i<imgcontent.length;i++){
