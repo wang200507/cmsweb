@@ -88,11 +88,9 @@
         </div>
     </div>
     <div class="footer">
-        <a class="xz" onclick="hp(0)">公众号消息</a>
+		<a class="xz"  href="" >公众号消息</a>
+		<a href="../../menu.html" class="fhcd">返回菜单</a>
 
-        <div class="fh" onclick="hpback(4)">
-            <a class="fhcd" href="javascript:;">返回菜单</a>
-        </div>
     </div>
     <div id="biaoJi"
          style="z-index:10;width:200px;position:absolute;bottom: 70px;background-color: #004477;border-radius:20px;height: 40px;"></div>
@@ -128,6 +126,7 @@
                         for(var i =0;i<imgcontent.length;i++){
                             if(i<imglist.length){
                                 imgcontent[i].setAttribute("src","/cmsweb/"+imglist[i]["imgUrl"]);
+                                imgcontent[i].setAttribute("style","width: 95%;height: auto;");
                             }
                         }
                     }
