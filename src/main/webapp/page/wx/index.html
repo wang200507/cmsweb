@@ -119,7 +119,7 @@
                     url: '/cmsweb/wechat/getWechatById.do?id='+id,
                 }).then(function (data) {
                     if (data.status == 1) {
-                        console.log(data);
+                       // console.log(data);
                         $(".con").html(data.data.html);
                         var imglist = data.data["imageList"];
                         var imgcontent = document.querySelector(".con").querySelectorAll("img");
@@ -142,6 +142,10 @@
                 }).then(function (data) {
                     if (data.status == 1) {
                         _this.items = data.data;
+                        var firstId =  data.data[0].id;
+                        if(firstId !=null && firstId != ""){
+                            _this.getContent(firstId);
+						}
                     }
                 }, function (err) {
                     console.log(err)
