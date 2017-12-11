@@ -130,7 +130,6 @@
                     url: '/cmsweb/wechat/getWechatById.do?id='+id,
                 }).then(function (data) {
                     if (data.status == 1) {
-                        console.log(data);
                         var _content = $(".con");
                         _content.empty();
                         _content.append("<h2 class=\"rich_media_title\" >" + data.data.title + "</h2>");
