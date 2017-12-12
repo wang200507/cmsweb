@@ -69,6 +69,7 @@
         <a class="xz" href="javascript:;">公众号消息</a>
         <a href="../../menu.html" class="fhcd">返回菜单</a>
     </div>
+    <div id="biaoJi" style="z-index: 10; width: 200px; position: absolute; bottom: 70px; background-color: rgb(0, 68, 119); border-radius: 20px; height: 40px; left: -5px;"></div>
 </div>
 </body>
 <script type="text/javascript" src="../../js/pingbao.js"></script>
@@ -103,10 +104,12 @@
                             _content.append(data.data.html);
                             var imglist = data.data["imageList"];
                             var imgcontent = document.querySelector(".con").querySelectorAll("img");
+                            console.log(data.data.imageList);
                             for (var i = 0; i < imgcontent.length; i++) {
                                 if (i < imglist.length) {
                                     imgcontent[i].setAttribute("style", "width: 95%;height: auto;margin-left: auto;margin-right: auto;");
                                     var oldSrc = imgcontent[i].getAttribute("data-src");
+                                    console.log("oldSrc",oldSrc);
                                     for (var k = 0; k < data.data.imageList.length; k++) {
                                         if (data.data.imageList[k]["url"].localeCompare(oldSrc) == 0) {
                                             imgcontent[i].setAttribute("src", "/cmsweb/" + imglist[i]["imgUrl"]);
