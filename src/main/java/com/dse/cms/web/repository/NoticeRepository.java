@@ -17,4 +17,5 @@ public interface NoticeRepository extends JpaRepository<Notice,Long> {
 
 
     List getNoticesByDeletedIsOrderByCreateTimeDesc(Integer deleted);
+    List getNoticesByDeletedIsAndIsPubIsOrderByCreateTimeDesc(Integer deleted,Integer ispub);
 }

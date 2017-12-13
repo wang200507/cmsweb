@@ -73,6 +73,7 @@ public class WeChatService {
            weChat = wechatRepository.findOne(id);
            if(Utility.isNotEmpty(weChat) &&Utility.isNotEmpty(weChat.getId())){
                List<WeChatImage> imageList = this.getImagesByWechat(request,id);
+               weChat.setImages(null);  // 去掉无用的二进制的内容
                weChat.setImageList(imageList);
            }
 

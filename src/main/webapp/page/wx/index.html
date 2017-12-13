@@ -1,277 +1,165 @@
 <!doctype html>
 <html lang="chn">
 
-	<head>
-		<meta charset="UTF-8">
-		<title>公众号消息</title>
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<!-- 删除苹果默认的工具栏和菜单栏 -->
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<!-- 设置苹果工具栏颜色 -->
-		<meta name="format-detection" content="telephone=no, email=no" />
-		<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+<head>
+    <meta charset="UTF-8">
+    <title>公众号消息</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!-- 删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
 
-		<link rel="stylesheet" type="text/css" href="css/news.css">
-		<link rel="stylesheet" type="text/css" href="css/self.css" />
+    <link rel="stylesheet" type="text/css" href="css/news.css">
+    <link rel="stylesheet" type="text/css" href="css/self.css"/>
 
-		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-		<style type="text/css">
-			.selfNeiRong {
-				color: rgb(126, 155, 61);
-				line-height: 1.6em;
-				letter-spacing: 2px;
-				font-size: 14px;
-				white-space: normal;
-				margin-right: auto;
-				margin-left: auto;
-				padding: 15px 10px;
-				box-sizing: border-box;
-			}
-			
-			.selfNeiRong p {
-				text-align: justify;
-				text-indent: 2em;
-				margin-bottom: 10px;
-				line-height: 1.75em;
-				font-size: 16px;
-			}
-			
-			.selfNeiRong img{
-				width: 90%;
-			}
-		</style>
-	</head>
-
-	<body onload="hp(0)" class="">
-		<div class="box">
-			<div class="left_main">
-				<div class="neirong" id="nr_id001">
-					<div class="title">
-						<h1></h1>
-						<p style="text-align: right;"></p>
-					</div>
-					<div class="con">
-						<div class="rich_media_content " id="js_content">
-							<section data-role="outer" label="Powered by 135editor.com" style="font-size:16px;">
-								<section class="" data-tools="135编辑器" data-id="89297" style="border: 0px none;box-sizing: border-box;">
-									<section style="margin: 5px;box-shadow: rgb(126, 155, 61) 0px 0px 3px;">
-										<section class="selfNeiRong">
-
-										</section>
-									</section>
-								</section>
-								<p><br></p>
-							</section>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="right_main">
-				<h3>公众号消息</h3>
-				<div class="pt">	
-					<img src="../../img/wx/331.jpg">
-					<div class="lb_pic">
-
-					</div>
-				</div>
-			</div>
-			<div class="footer">
-				<a class="xz" onclick="hp(0)">公众号消息</a>
-
-				<div class="fh" onclick="hpback(4)">
-					<a class="fhcd" href="javascript:;">返回菜单</a>
-				</div>
-			</div>
-			<div id="biaoJi" style="z-index:10;width:200px;position:absolute;bottom: 70px;background-color: #004477;border-radius:20px;height: 40px;"></div>
-			<div id="dataTitle" style="display: none">
-
-			</div>
-			<div id="dataContent" style="display: none;">
-
-			</div>
-			<script type="text/javascript">
-				var index = 0;
-				var firstLoadName = "2017112401"; //首次加载文章html名称
-				function hp(changeIndex) {
-					document.querySelector(".right_main").style.height = "0px";
-					//document.querySelector(".neirong").style.opacity = 0;
-					index = changeIndex;
-					//leftLoad(index, firstLoadName);
-					//rightLoad(index);
-					var ary = document.querySelector(".footer").querySelectorAll("a");
-					for(var i = 0; i < ary.length - 1; i++) {
-						if(i == index) {
-							ary[i].className = "xz";
-						} else {
-							ary[i].className = "";
-						}
-					}
-					var obj = document.querySelector(".footer").querySelectorAll("a")[index];
-					var _style = getStyle(obj);
-					var _width = _style.width;
-					var _left = getLeft(obj);
-					document.getElementById("biaoJi").style.width = _width;
-					document.getElementById("biaoJi").style.left = _left + "px";
-
-					setTimeout(function() {
-						document.querySelector(".right_main").querySelector("h3").innerHTML = ary[index].innerHTML;
-						document.querySelector(".right_main").style.height = "100%";
-					}, 1000);
-
-				}
-
-				function getTop(o) {
-					var offTop = o.offsetTop;
-					if(o.offsetParent) {
-						offTop += arguments.callee(o.offsetParent);
-					}
-					return offTop;
-				}
-
-				function getLeft(o) {
-					var offLeft = o.offsetLeft;
-					if(o.offsetParent) {
-						offLeft += arguments.callee(o.offsetParent);
-					}
-					return offLeft;
-				}
-
-				function getStyle(o) {
-					return o.currentStyle || window.getComputedStyle(o, null);
-				}
-
-				function hpback() {
-
-					setTimeout(function() {
-						window.location.href = "../../menu.html"
-					}, 200);
-				}
-
-				function leftLoad(list, index) {
-					$(".neirong").load('temple/' + list + '/one/' + index + '.html', function() {
-						setTimeout(function() {
-							document.querySelector(".neirong").style.opacity = 1;
-						}, 500);
-					});
-				}
-
-				function rightLoad(list) {
-					$(".lb_pic").load('temple/' + list + '/list/list.html', function() {
-						$(".lb_pic a").click(function() {
-							var _this = $(this);
-							var _name = _this.attr("name");
-							var childIndex = ($(".lb_pic a").length - 1) - ($(".lb_pic a").index(this));
-							document.querySelector(".neirong").style.opacity = 0;
-							setTimeout(function() {
-								leftLoad(index, _name);
-							}, 500);
-						});
-					});
-				}
-			</script>
-	</body>
-	<script type="text/javascript" src="../../js/pingbao.js"></script>
-	<script type="text/javascript">
-		function getImgUrl(urlTxt,fileId,arge){
-			var _result = "";
-			if(urlTxt.indexOf("wx_fmt=jpeg")>-1){
-				_result = fileId + "_"+arge+".jpeg";
-			}else if(urlTxt.indexOf("wx_fmt=jpg")>-1){
-				_result = fileId + "_"+arge+".jpg";
-			}else if(urlTxt.indexOf("wx_fmt=png")>-1){
-				_result = fileId + "_"+arge+".png";
-			}
-			_result = "data/"+_result;
-			return _result;
-		}
-		function loadLeftTxt(imgTitleUrl,fileId,txttime){
-			document.querySelector(".neirong").scrollTop = "0px";
-			document.querySelector(".neirong").style.opacity = 0;
-			$("#dataTitle").load('data/'+fileId+'.title',function(result){
-				document.querySelector(".title").querySelector("h1").innerHTML = document.getElementById("dataTitle").querySelector("h2").innerHTML;
-				document.querySelector(".title").querySelector("p").innerHTML = txttime+" 宁夏水务投资集团有限公司";
-				var plist = [];
-				var ptxt = [];
-				var imagestxt = [];
-				$("#dataContent").load('data/'+fileId+'.content',function(txt){
-					plist = document.getElementById("dataContent").querySelectorAll("p");
-					for(var i = 0;i<plist.length;i++){
-						var tempTxt = plist[i].innerText||plist[i].textContent;
-						if(tempTxt&&tempTxt.trim().length>0){
-							ptxt.push(tempTxt);
-						}
-					}
-					$.getJSON('data/'+fileId+'.img',function(imgTxt){
-						//imagestxt.push(imgTitleUrl);
-						$.each(imgTxt,function(i,v){
-							imagestxt.push(v);
-						});
-						var _content = "";
-						var _index = 1;
-						while(true){
-							if(imagestxt.length-_index>=0){
-								_content = '<p><img src="'+getImgUrl(imagestxt[imagestxt.length-_index],fileId,(imagestxt.length-_index))+'"/></p>' + _content;
-							}
-							if(ptxt.length-_index>=0){
-								_content = '<p>'+ptxt[ptxt.length-_index]+'</p>' + _content;
-							}
-							if((imagestxt.length-_index)<0&&(ptxt.length-_index)<0){
-								break;
-							}
-							 _index++;
-						}
-						document.querySelector(".selfNeiRong").innerHTML = _content;
-						setTimeout(function(){
-							document.querySelector(".neirong").style.opacity = 1;
-						},500);
-					});
-				});
-			});
-		}
-		$(function() {
-			$.getJSON('data/data.txt', function(result) {
-				var rightTxt = "";
-				$.each(result.list, function(i, v) {
-					var currentTime = new Date();
-					currentTime.setTime(v["comm_msg_info"]["datetime"] * 1000);
-					var year = currentTime.getFullYear();
-					var month = currentTime.getMonth();
-					var day = currentTime.getDate();
-					var txtTime = year + "-" + (month + 1) + "-" + day;
-					rightTxt += '<div class="topic" onclick="loadLeftTxt(\''+v["app_msg_ext_info"]["cover"]+'\','+v["app_msg_ext_info"]["fileid"]+',\''+txtTime+'\')">';
-					rightTxt +=	'<a href="javascript:;">';
-					rightTxt +=		'<div class="picture">';
-					rightTxt +=			'<img src="'+getImgUrl(v["app_msg_ext_info"]["cover"],v["app_msg_ext_info"]["fileid"],'title')+'">';
-					rightTxt +=			'<div class="title2 xz">';
-					rightTxt +=  			v["app_msg_ext_info"]["title"];
-					rightTxt +=			'</div>';
-					rightTxt +=			'<div class="nr">宁夏水务投资集团 <span>'+txtTime+'</span></div>';
-					rightTxt +=		'</div>';
-					rightTxt +=	'</a>';
-					rightTxt +='</div>';
-					$.each(v["app_msg_ext_info"]["multi_app_msg_item_list"], function(chilc_d,child_v) {
-						rightTxt += '<div class="topic" onclick="loadLeftTxt(\''+child_v["cover"]+'\','+child_v["fileid"]+',\''+txtTime+'\')">';
-						rightTxt +=	'<a href="javascript:;" name="2017112402">';
-						rightTxt +=		'<div class="picture">';
-						rightTxt +=			'<img src="'+getImgUrl(child_v["cover"],child_v["fileid"],'title')+'">';
-						rightTxt +=			'<div class="title2 xz">';
-						rightTxt +=  	child_v["title"];
-						rightTxt +=			'</div>';
-						rightTxt +=			'<div class="nr">宁夏水务投资集团 <span>'+txtTime+'</span></div>';
-						rightTxt +=		'</div>';
-						rightTxt +=	'</a>';
-						rightTxt +='</div>';						
-					});
-					if(i==0){
-						loadLeftTxt(v["app_msg_ext_info"]["cover"],v["app_msg_ext_info"]["fileid"],txtTime);
-					}
-				});
-				rightTxt += "<br/><br/><br/><br/>";
-				document.querySelector(".lb_pic").innerHTML = rightTxt;
-			});
-		});
-	</script>
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/vue.min.js"></script>
+    <style type="text/css">
+        .selfNeiRong p {
+            text-align: justify;
+            text-indent: 2em;
+            margin-bottom: 10px;
+            line-height: 1.75em;
+            font-size: 16px;
+        }
+        a {
+            color: #607fa6;
+            text-decoration: none;
+        }
+        .selfNeiRong img {
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="left_main">
+        <div class="neirong" id="nr_id001">
+            <div class="title">
+                <h1></h1>
+                <p style="text-align: right;"></p>
+            </div>
+            <div class="con">
+            </div>
+        </div>
+    </div>
+    <div class="right_main">
+        <h3>公众号消息</h3>
+        <div class="pt">
+            <div id="rightList" class="lb_pic">
+                <div class="topic" v-for="(item, index) in items" @click="getContent(item.id)">
+                    <a href="javascript:;">
+                        <div class="picture">
+                            <img :src="'/cmsweb/'+item.imgUrl">
+                            <div class="title2 xz">{{item.title}}</div>
+                            <div class="nr">宁夏水务投资集团 <span>{{item.datetime}}</span></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <a class="xz" href="javascript:;">公众号消息</a>
+        <a href="../../menu.html" class="fhcd">返回菜单</a>
+    </div>
+    <div id="biaoJi" style="z-index: 10; width: 200px; position: absolute; bottom: 70px; background-color: rgb(0, 68, 119); border-radius: 20px; height: 40px; left: -5px;"></div>
+</div>
+</body>
+<script type="text/javascript" src="../../js/pingbao.js"></script>
+<script type="text/javascript" src="js/python.min.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#rightList',
+        data: function () {
+            return {
+                items: [],
+                current: 0
+            }
+        },
+        methods: {
+            getContent: function (id) {
+                document.querySelector(".neirong").style.opacity = 0;
+                setTimeout(function () {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/cmsweb/wechat/getWechatById.do?id=' + id,
+                    }).then(function (data) {
+                        if (data.status == 1) {
+                            var imageList = data.imageList;
+                            var _content = $(".con");
+                            _content.empty();
+                            _content.append("<h2 class=\"rich_media_title\" >" + data.data.title + "</h2>");
+                            _content.append("<div id=\"meta_content\" class=\"rich_media_meta_list\">");
+                            _content.append("<em id=\"post-date\" class=\"rich_media_meta rich_media_meta_text\">");
+                            _content.append(data.data.datetime);
+                            _content.append("</em>");
+                            _content.append("<a class=\"rich_media_meta rich_media_meta_link rich_media_meta_nickname\" href=\"##\" id=\"post-user\">&nbsp;&nbsp;宁夏水务投资集团有限公司</a>");
+                            _content.append(data.data.html);
+                            var imglist = data.data["imageList"];
+                            var imgcontent = document.querySelector(".con").querySelectorAll("img");
+                            console.log(data.data.imageList);
+                            for (var i = 0; i < imgcontent.length; i++) {
+                                if (i < imglist.length) {
+                                    imgcontent[i].setAttribute("style", "width: 95%;height: auto;margin-left: auto;margin-right: auto;");
+                                    var oldSrc = imgcontent[i].getAttribute("data-src");
+                                    console.log("oldSrc",oldSrc);
+                                    for (var k = 0; k < data.data.imageList.length; k++) {
+                                        if (data.data.imageList[k]["url"].localeCompare(oldSrc) == 0) {
+                                            imgcontent[i].setAttribute("src", "/cmsweb/" + imglist[i]["imgUrl"]);
+                                            break;
+                                        }
+                                    }
+                                    (function (index) {
+                                        setTimeout(function () {
+                                            var imgObj = document.querySelector(".con").querySelectorAll("img")[index];
+                                            var imgWidth = parseInt(imgObj.width);
+                                            var imgNaturalWidth = parseInt(imgObj.naturalWidth);
+                                            if (imgWidth > imgNaturalWidth) {
+                                                imgObj.style.width = imgNaturalWidth + "px";
+                                            }
+                                        }, 500);
+                                    })(i);
+                                }
+                            }
+                        }
+                    },function(err){
+                        console.log(err)
+                    });
+                    /**
+                     * 重新调整图片的大小
+                     */
+                    document.querySelector(".neirong").style.opacity = 1;
+                    document.querySelector(".neirong").scrollTop = "0px";
+                }, 1000);
+            },
+            getData: function () {
+                var _this = this;
+                $.ajax({
+                    type: 'GET',
+                    url: '/cmsweb/wechat/getWechatList.do',
+                }).then(function (data) {
+                    if (data.status == 1) {
+                        _this.items = data.data;
+                        var firstId = data.data[0].id;
+                        if (firstId != null && firstId != "") {
+                            _this.getContent(firstId);
+                        }
+                    }
+                }, function (err) {
+                    console.log(err)
+                });
+            }
+        },
+        created: function () {
+            this.getData();
+        }
+    });
+</script>
 </html>
