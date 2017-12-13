@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="../../css/item.css">
 	<link rel="stylesheet" href="../../css/cms-animate.css">
 	<style>
-		#codePage {
+		iframe {
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -43,9 +43,7 @@
 			<h3>集团公告</h3>
 			<div class="slide">
 				<a :href="item.content_url" class="item" v-for="(item, index) in items" @click.prevent="getContent(item.content_url)">
-					<div class="item-left" :style="{'background-image': 'url(' + item.cover + ')'}">
-						<!--<img :src="item.cover" alt="">-->
-					</div>
+					<div class="item-left" :style="{'background-image': 'url(' + item.cover + ')'}"></div>
 					<div class="item-right">
 						<h6 class="item-title">{{item.title}}</h6>
 						<p class="item-intro">{{item.digest}}</p>
@@ -63,6 +61,8 @@
 	</div>
 
 	<iframe id="codePage" frameborder="0"></iframe>
+	<iframe id="gzh" frameborder="0"></iframe>
+	<iframe id="gzhList" frameborder="0"></iframe>
 
 	<script src="../../js/jquery-1.9.1.js"></script>
 	<script src="../../js/vue.min.js"></script>
@@ -123,56 +123,61 @@
 					}
                 },
 				showGZHcodePage: function (matchRes) {
-                    if (!matchRes) {
-                        var $codePage = $('#codePage');
-                        $codePage.attr('src', code1);
-                        $codePage.on('load', function () {
-							var $resetSogu = $('#resetSogu').clone();
-                            $('#resetSogu').remove();
-                            var $contentDocument = $($codePage[0].contentDocument);
-                            $contentDocument.find('head').append($resetSogu);
-                            $codePage.css('visibility', 'visible');
-                            var $submit = $contentDocument.find('#submit');
-                            $submit.on('click', function () {
-                                $codePage.on('load', function () {
-                                    $codePage.css('visibility', 'hidden');
-                                });
-                            });
+					var $codePage = $('#codePage');
+					$codePage.attr('src', code1);
+					$codePage.on('load', function () {
+						var $resetSogu = $('#resetSogu').clone();
+						$('#resetSogu').remove();
+						var $contentDocument = $($codePage[0].contentDocument);
+						$contentDocument.find('head').append($resetSogu);
+						$codePage.css('visibility', 'visible');
+						var $submit = $contentDocument.find('#submit');
+						$submit.on('click', function () {
+							$codePage.on('load', function () {
+								$codePage.css('visibility', 'hidden');
+							});
 						});
-                    }
+					});
                 },
                 showGZHlistCodePage: function (matchRes) {
-                    if (JSON.stringify(matchRes) === '{}') {
-                        var $codePage = $('#codePage');
-                        $codePage.attr('src', code2);
-                        $codePage.on('load', function () {
-                            $codePage.css('visibility', 'visible');
-                            var $contentDocument = $($codePage[0].contentDocument);
-                            var $submit = $contentDocument.find('#bt');
-                            $submit.on('click', function () {
-                                $codePage.on('load', function () {
-                                    $codePage.css('visibility', 'hidden');
-								});
-                            });
-                        });
-                    }
+					var $codePage = $('#codePage');
+					$codePage.attr('src', code2);
+					$codePage.on('load', function () {
+                        var $contentDocument = $($codePage[0].contentDocument);
+						$codePage.css('visibility', 'visible');
+						var $submit = $contentDocument.find('#bt');
+						$submit.on('click', function () {
+							$codePage.on('load', function () {
+								$codePage.css('visibility', 'hidden');
+							});
+						});
+					});
                 },
 				getData: function () {
 				    var _this = this;
-					$.ajax({
-						type: 'GET',
-						url: sogouSearchUrl + queryName
-					}).then(function(res) {
-						var reg = /<.*account_name_0.*>/;
-						var matchRes = res.match(reg);
-						_this.showGZHcodePage(matchRes);
-						var queryNameLink = matchRes[0];
-						var queryNameHref = $(queryNameLink).attr('href');
-						$.ajax({
-							type: 'GET',
-							url: queryNameHref + json
-						}).then(function(res) {
-                            _this.showGZHlistCodePage(res);
+                    var $gzh = $('#gzh');
+                    $gzh.attr('src', sogouSearchUrl + queryName);
+                    $gzh.on('load', function () {
+                        var $contentDocument = $($gzh[0].contentDocument);
+                        var $href = $contentDocument.find('[uigs="account_name_0"]');
+                        if ($href.length === 0) {
+                            _this.showGZHcodePage();
+                            return
+						}
+                        var $gzhList = $('#gzhList');
+                        var href = $href.attr('href') + json;
+                        var res;
+						$gzhList.attr('src', href);
+                        $gzhList.on('load', function () {
+                            var $contentDocument = $($gzhList[0].contentDocument);
+                            res = $contentDocument.find('pre').text();
+                            if (res === '{}') {
+                                _this.showGZHlistCodePage();
+                                return
+							}
+                            if (typeof res === 'string') {
+                                res = JSON.parse(res);
+							}
 							if (typeof res === 'object' && typeof res.general_msg_list === 'string') {
 								var general_msg_list = JSON.parse(res.general_msg_list);
 							}
@@ -207,8 +212,8 @@
 							_this.items = items;
                             _this.getContent(items[0].content_url);
 							_this.setCache(sItems_key, JSON.stringify(items));
-						});
-					});
+                        });
+                    });
 				},
 				setCache: function (key, value) {
 					window.localStorage.setItem(key, value);
@@ -246,6 +251,7 @@
 						this.content = JSON.parse(oContent_key);
 					}
                     this.randomInterval(6 * 60 * 60 * 1000, 8 * 60 * 60 * 1000);
+                    //this.randomInterval(30 * 1000, 60 * 1000);
 				} else {
                     this.getData();
 				}
