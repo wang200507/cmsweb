@@ -16,13 +16,28 @@
 
 		<link rel="stylesheet" type="text/css" href="css/news.css">
 		<link rel="stylesheet" type="text/css" href="css/self.css" />
-
-		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<link rel="stylesheet" href="../../css/cms-animate.css">
+		<style type="text/css">
+			html, body {
+				height: 100%;
+			}
+			.iframeWrap {
+				position: absolute;
+				top: 0;
+				bottom: 94px;
+				width: 100%;
+				border: none;
+				background-color: white;
+			}
+			.iframeWrap iframe {
+				width: 100%;
+				height: 100%;
+				border: none;
+			}
+		</style>
 	</head>
-<style type="text/css">  
 
-</style>  
-	<body onload="hp(0)" class="">
+	<body onload="hp(0)">
 		<div class="box">
 			<div class="left_main">
 				<div class="neirong" id="nr_id001" style="overflow-x: hidden">
@@ -41,180 +56,210 @@
 				<a class="xz" onclick="hp(0)">集团概述</a>
 				<a onclick="hp(1)">董事长致词</a>
 				<a onclick="hp(2)">集团领导</a>
-				<a onclick="hp(3)">组织机构</a>
+				<a onclick="hp(3)" id="organization">组织机构</a>
 				<a onclick="hp(4)">集团荣誉</a>
 				<a onclick="hp(5)">大事记</a>
+				<a onclick="hp(6)" id="floorPlanLink">楼层分布图</a>
 				<div class="fh" onclick="hpback()">
 					<a class="fhcd" href="javascript:;">返回菜单</a>
 				</div>
 			</div>
 			<div id="biaoJi" style="z-index:10;width:200px;position:absolute;bottom: 70px;background-color: #004477;border-radius:20px;height: 40px;"></div>
-			<script type="text/javascript">
-				var index = 0;
+		</div>
 
-				function hp(changeIndex) {
-					document.querySelector(".right_main").style.height = "0px";
-					document.querySelector(".neirong").style.opacity = 0;
-					index = changeIndex;
-					leftLoad(index, 0);
-					rightLoad(index);
-					var ary = document.querySelector(".footer").querySelectorAll("a");
-					for(var i = 0; i < ary.length - 1; i++) {
-						if(i == index) {
-							ary[i].className = "xz";
-						} else {
-							ary[i].className = "";
-						}
+		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+		<script type="text/javascript">
+			var index = 0;
+
+			function hp(changeIndex) {
+				document.querySelector(".right_main").style.height = "0px";
+				document.querySelector(".neirong").style.opacity = 0;
+				index = changeIndex;
+				leftLoad(index, 0);
+				rightLoad(index);
+				var ary = document.querySelector(".footer").querySelectorAll("a");
+				for(var i = 0; i < ary.length - 1; i++) {
+					if(i == index) {
+						ary[i].className = "xz";
+					} else {
+						ary[i].className = "";
 					}
-					var obj = document.querySelector(".footer").querySelectorAll("a")[index];
-					var _style = getStyle(obj);
-					var _width = _style.width;
-					var _left = getLeft(obj);
-					document.getElementById("biaoJi").style.width = _width;
-					document.getElementById("biaoJi").style.left = _left + "px";
+				}
+				var obj = document.querySelector(".footer").querySelectorAll("a")[index];
+				var _style = getStyle(obj);
+				var _width = _style.width;
+				var _left = getLeft(obj);
+				document.getElementById("biaoJi").style.width = _width;
+				document.getElementById("biaoJi").style.left = _left + "px";
 
+				setTimeout(function() {
+					document.querySelector(".right_main").querySelector("h3").innerHTML = ary[index].innerHTML;
+					document.querySelector(".right_main").style.height = "100%";
+				}, 1000);
+
+				if(index==0){
+					$(".left_main").css({
+						"width":"70%"
+					});
+					$(".right_main").css({
+						"width":"26%",
+						"display":"block"
+					});
+					$(".left_main").css({
+						"background":"white"
+					})
+				}else if(index==1){
+					$(".left_main").css({
+						"width":"30%"
+					});
+					$(".right_main").css({
+						"width":"65%",
+						"display":"block"
+					});
+					$(".left_main").css({
+						"background":"white"
+					})
+				}else if(index==2){
+					$(".left_main").css({
+						"width":"70%"
+					});
+					$(".right_main").css({
+						"width":"26%",
+						"display":"block"
+					});
+					$(".left_main").css({
+						"background":"white"
+					})
+				}else if(index==3){
+					$(".left_main").css({
+						"width":"100%"
+					});
+					$(".right_main").css({
+						"width":"0%",
+						"display":"none"
+					});
+					$(".left_main").css({
+						"background":"#456f9f"
+					})
+				}else if(index==4){
+					$(".left_main").css({
+						"width":"98%"
+					});
+					$(".right_main").css({
+						"width":"0%",
+						"display":"none"
+					});
+					$(".left_main").css({
+						"background":"#456f9f"
+					})
+				}else if(index==5){
+					$(".left_main").css({
+						"width":"98%"
+					});
+					$(".right_main").css({
+						"width":"0%",
+						"display":"none"
+					});
+					$(".left_main").css({
+						"background":"#11396A",
+						"text-align":"center"
+					});
+				}else if(index==6){
+					$(".left_main").css({
+						"width":"100%"
+					});
+					$(".right_main").css({
+						"width":"0%",
+						"display":"none"
+					});
+					$(".left_main").css({
+						"background":"#456f9f"
+					})
+				}
+			}
+
+			function getTop(o) {
+				var offTop = o.offsetTop;
+				if(o.offsetParent) {
+					offTop += arguments.callee(o.offsetParent);
+				}
+				return offTop;
+			}
+
+			function getLeft(o) {
+				var offLeft = o.offsetLeft;
+				if(o.offsetParent) {
+					offLeft += arguments.callee(o.offsetParent);
+				}
+				return offLeft;
+			}
+
+			function getStyle(o) {
+				return o.currentStyle || window.getComputedStyle(o, null);
+			}
+
+			function hpback() {
+				window.location.href = "../../menu.html"
+			}
+
+			function leftLoad(list, index) {
+				$(".neirong").load('temple/' + list + '/one/' + index + '.html', function() {
 					setTimeout(function() {
-						document.querySelector(".right_main").querySelector("h3").innerHTML = ary[index].innerHTML;
-						document.querySelector(".right_main").style.height = "100%";
-					}, 1000);
-					
-					if(index==0){
-						$(".left_main").css({
-							"width":"70%"
-						});
-						$(".right_main").css({
-							"width":"26%",
-							"display":"block"
-						});				
-						$(".left_main").css({
-							"background":"white" 
-						})
-					}else if(index==1){
-						$(".left_main").css({
-							"width":"30%"
-						});
-						$(".right_main").css({
-							"width":"65%",
-							"display":"block"
-						});
-						$(".left_main").css({
-							"background":"white" 
-						})						
-					}else if(index==2){
-						$(".left_main").css({
-							"width":"70%"
-						});
-						$(".right_main").css({
-							"width":"26%",
-							"display":"block"
-						});	
-						$(".left_main").css({
-							"background":"white" 
-						})						
-					}else if(index==3){
-						$(".left_main").css({
-							"width":"100%"
-						});
-						$(".right_main").css({
-							"width":"0%",
-							"display":"none"
-						});	
-						$(".left_main").css({
-							"background":"#456f9f" 
-						})
-					}else if(index==4){
-						$(".left_main").css({
-							"width":"98%"
-						});
-						$(".right_main").css({
-							"width":"0%",
-							"display":"none"
-						});	
-						$(".left_main").css({
-							"background":"#456f9f" 
-						})
-					}else if(index==5){
-						$(".left_main").css({
-							"width":"98%"
-						});
-						$(".right_main").css({
-							"width":"0%",
-							"display":"none"
-						});		
-						$(".left_main").css({
-							"background":"#11396A",
-							"text-align":"center"
-						});						
-					}else if(index==6){s;
-						$(".left_main").css({
-							"width":"100%"
-						});
-						$(".right_main").css({
-							"width":"0%",
-							"display":"none"
-						});	
-						$(".left_main").css({
-							"background":"#456f9f" 
-						})						
-					}
-				}
+						document.querySelector(".neirong").style.opacity = 1;
+					}, 500);
+				});
+			}
 
-				function getTop(o) {
-					var offTop = o.offsetTop;
-					if(o.offsetParent) {
-						offTop += arguments.callee(o.offsetParent);
-					}
-					return offTop;
-				}
-
-				function getLeft(o) {
-					var offLeft = o.offsetLeft;
-					if(o.offsetParent) {
-						offLeft += arguments.callee(o.offsetParent);
-					}
-					return offLeft;
-				}
-
-				function getStyle(o) {
-					return o.currentStyle || window.getComputedStyle(o, null);
-				}
-
-				function hpback() {
-					window.location.href = "../../menu.html"
-				}
-
-				function leftLoad(list, index) {
-					$(".neirong").load('temple/' + list + '/one/' + index + '.html', function() {
-						setTimeout(function() {
-							document.querySelector(".neirong").style.opacity = 1;
-						}, 500);
-					});
-				}
-
-				function rightLoad(list) {
-					$(".lb_pic").load('temple/' + list + '/list/list.html', function() {
-						$(".lb_pic a").click(function() {
-							var childIndex = $(".lb_pic a").index(this);
-							document.querySelector(".neirong").style.opacity = 0;
-							setTimeout(function(){
-								leftLoad(index, childIndex);
-							},500);
-						});
-					});
-				}
-			</script>
-			<script type="text/javascript">
-				!(function(){
-					var txt = window.location.search;
-					if(txt.indexOf("zzjg")>-1){
+			function rightLoad(list) {
+				$(".lb_pic").load('temple/' + list + '/list/list.html', function() {
+					$(".lb_pic a").click(function() {
+						var childIndex = $(".lb_pic a").index(this);
+						document.querySelector(".neirong").style.opacity = 0;
 						setTimeout(function(){
-							console.log(document.querySelector(".footer").querySelectorAll("a"));
-							console.log(document.querySelector(".footer").querySelectorAll("a")[3]);
-							document.querySelector(".footer").querySelectorAll("a")[3].click();
-						},1000);
+							leftLoad(index, childIndex);
+						},500);
+					});
+				});
+			}
+		</script>
+		<script type="text/javascript">
+			!(function(){
+				var txt = window.location.search;
+				if(txt.indexOf("zzjg")>-1){
+					setTimeout(function(){
+						console.log(document.querySelector(".footer").querySelectorAll("a"));
+						console.log(document.querySelector(".footer").querySelectorAll("a")[3]);
+						document.querySelector(".footer").querySelectorAll("a")[3].click();
+					},1000);
+				}
+			})();
+		</script>
+		<script type="text/javascript" src="../../js/pingbao.js"></script>
+		<script>
+			jQuery(function ($) {
+			    var $footer = $('.footer');
+                $footer.on('click', 'a', function (e) {
+				    var id = $(e.target).attr('id');
+				    var $iframeWrap = $('.iframeWrap');
+				    if (id === 'floorPlanLink') {
+				        if ($footer.$floorPlan) {
+                            $iframeWrap.hide();
+                            $footer.$floorPlan.show();
+						} else {
+                            $footer.$floorPlan = $('<div class="iframeWrap"><iframe class="fadeOutIn" src="iframe/floorPlan/index.html"></iframe></div>').appendTo('body').end();
+						}
+					} else if (id === 'organization') {
+                        if ($footer.$organization) {
+                            $iframeWrap.hide();
+                            $footer.$organization.show();
+                        } else {
+                            $footer.$organization = $('<div class="iframeWrap"><iframe class="fadeOutIn" src="iframe/organization/index.html"></iframe></div>').appendTo('body').end();
+                        }
+					} else {
+                        $iframeWrap.hide();
 					}
-				})();
-			</script>
+				})
+			});
+		</script>
 	</body>
-<script type="text/javascript" src="../../js/pingbao.js"></script>
 </html>
