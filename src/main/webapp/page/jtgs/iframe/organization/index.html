@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组织机构</title>
+	<link rel="stylesheet" href="css/element-ui-2.0.8.min.css">
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		svg {
+			width: 100%;
+			height: 100%;
+		}
+		svg tspan {
+			outline: 0;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="organization"></div>
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/vue.min.js"></script>
+	<script src="js/element-ui-2.0.8.min.js"></script>
+	<script>
+		var OLD_COLOR = '#103E61',
+			FOCUS_COLOR = 'rgb(229, 0, 18)',
+			OLD_COLOR_QUERY = 'tspan[fill="' + OLD_COLOR + '"]';
+		new Vue({
+			el: '#organization',
+			methods: {
+				setFill: function ($target, color) {
+                    $target.attr('fill', color)
+                }
+            },
+			created: function() {
+				var _this = this;
+				$.ajax({
+					url: 'svg/organization.svg',
+					dataType: 'xml'
+				}).then(function(res) {
+					$('#organization').append(res.documentElement);
+					var $texts = $(OLD_COLOR_QUERY);
+					$texts.click(function() {
+						_this.$tspan = $(this);
+                        var title;
+						var $g = _this.$tspan.parents('g');
+                        if ($g.attr('id') === 'twoline') {
+                            _this.$tspan = $g.find(OLD_COLOR_QUERY);
+							title = _this.$tspan.eq(0).text() + _this.$tspan.eq(1).text();
+						} else {
+                            title = _this.$tspan.text();
+						}
+                        _this.setFill(_this.$tspan, FOCUS_COLOR);
+
+						_this.$msgbox({
+							title: title,
+							dangerouslyUseHTMLString: true,
+							message: '<strong>这是 <i>HTML</i> 片段</strong>',
+							showCancelButton: false,
+							confirmButtonText: '关闭',
+							lockScroll: false
+						}).then(function(confirm) {}, function(cancel) {});
+					}).blur(function() {
+                        _this.setFill(_this.$tspan, OLD_COLOR);
+					});
+				}, function(err) {
+					console.log(err);
+				});
+			}
+		});
+	</script>
+</body>
+</html>
