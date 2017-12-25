@@ -40,13 +40,13 @@
 										<section style="margin-right: auto;margin-left: auto;text-align: center;line-height: 0px !important;">
 											<img src="img/4-2.png" class="" style="width: 40% !important; height: auto !important; visibility: visible !important;">
 											<img src="img/4-5.png" class="" style="width: 40% !important; height: auto !important; visibility: visible !important;">
-										</section>	
-										</br>												
+										</section>
+										</br>
 										<section style="margin-right: auto;margin-left: auto;text-align: center;line-height: 0px !important;">
 											<img src="img/4-4.png" class="" style="width: 40% !important; height: auto !important; visibility: visible !important;">
 											<img src="img/4-3.png" class="" style="width: 40%!important; height: auto !important; visibility: visible !important;">
-										</section>		
-											</br>								
+										</section>
+										</br>
 										<section style="margin-right: auto;margin-left: auto;text-align: center;line-height: 0px !important;">
 											<img src="img/4-6.png" class="" style="width: 40%!important; height: auto !important; visibility: visible !important;">
 											<img src="img/4-7.png" class="" style="width: 40% !important; height: auto !important; visibility: visible !important;">
@@ -95,7 +95,9 @@
 	<script type="text/javascript" src="../../js/pingbao.js"></script>
 	<script type="text/javascript">
 		function hpback() {
-			window.location.href = "/cmsweb/page/jtgs/index.html?zzjg=zzjg";
+			//window.location.href = "/cmsweb/page/jtgs/index.html?zzjg=zzjg";
+			window.parent.document.querySelector(".box").style.display = "block";
+			window.parent.document.getElementById("iframeChild").style.display = "none";
 		}
 	</script>
 
