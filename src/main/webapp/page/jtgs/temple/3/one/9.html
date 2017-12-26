@@ -84,7 +84,9 @@
 	<script type="text/javascript" src="../../js/pingbao.js"></script>
 	<script type="text/javascript">
 		function hpback() {
-			window.location.href = "/cmsweb/page/jtgs/index.html?zzjg=zzjg";
+			//window.location.href = "/cmsweb/page/jtgs/index.html?zzjg=zzjg";
+			window.parent.document.querySelector(".box").style.display = "block";
+			window.parent.document.getElementById("iframeChild").style.display = "none";
 		}
 	</script>
 

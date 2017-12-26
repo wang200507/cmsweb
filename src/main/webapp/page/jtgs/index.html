@@ -37,8 +37,8 @@
 		</style>
 	</head>
 
-	<body onload="hp(0)">
-		<div class="box">
+	<body onload="hp(0)" style="overflow: hidden;">
+		<div class="box" style="display: block;">
 			<div class="left_main">
 				<div class="neirong" id="nr_id001" style="overflow-x: hidden">
 
@@ -66,7 +66,7 @@
 			</div>
 			<div id="biaoJi" style="z-index:10;width:200px;position:absolute;bottom: 70px;background-color: #004477;border-radius:20px;height: 40px;"></div>
 		</div>
-
+		<iframe id="iframeChild" src="temple/3/one/14.html" style="width: 100%;height: 100%;display: none;"></iframe>
 		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 		<script type="text/javascript">
 			var index = 0;
@@ -249,17 +249,26 @@
                             $footer.$floorPlan = $('<div class="iframeWrap"><iframe class="fadeOutIn" src="iframe/floorPlan/index.html"></iframe></div>').appendTo('body').end();
 						}
 					} else if (id === 'organization') {
-                        /*if ($footer.$organization) {
-                            $iframeWrap.hide();
-                            $footer.$organization.show();
-                        } else {
-                            $footer.$organization = $('<div class="iframeWrap"><iframe class="fadeOutIn" src="iframe/organization/index.html"></iframe></div>').appendTo('body').end();
-                        }*/
+						
+//                      /*if ($footer.$organization) {
+//                          $iframeWrap.hide();
+//                          $footer.$organization.show();
+//                      } else {
+//                          $footer.$organization = $('<div class="iframeWrap"><iframe class="fadeOutIn" src="iframe/organization/index.html"></iframe></div>').appendTo('body').end();
+//                      }*/
+						
 					} else {
                         $iframeWrap.hide();
 					}
 				})
 			});
+		</script>
+		<script type="text/javascript">
+			function showChild(childTxt){
+				document.querySelector(".box").style.display = "none";
+				document.getElementById("iframeChild").style.display = "block";
+				document.getElementById("iframeChild").setAttribute("src",childTxt);
+			}
 		</script>
 	</body>
 </html>
