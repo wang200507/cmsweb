@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>水务一体化发展纪实</title>
+	<link rel="stylesheet" href="../../css/reset.css">
+	<link rel="stylesheet" href="../../css/layout.css">
+	<link rel="stylesheet" href="../../css/util.css">
+	<link rel="stylesheet" href="../../css/footer.css">
+	<link rel="stylesheet" href="../../css/item.css">
+	<link rel="stylesheet" href="../../css/cms-animate.css">
+	<style>
+		.left_main {
+			text-align: center;
+			padding-right: 5%;
+			padding-left: 5%;
+			font-size: 18px;
+		}
+		.left_main h1 {
+			margin: 50px 0 30px;
+			font-size: 42px;
+			position: relative;
+		}
+		.left_main h2 {
+			margin: -15px 0 30px;
+			font-size: 26px;
+		}
+		.left_main h1 span {
+			background-color: white;
+			position: relative;
+			display: inline-block;
+			padding: 0 15px;
+		}
+		.left_main h1:before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 100%;
+			height: 1px;
+			background-color: black;
+		}
+		.left_main .photoWrap img {
+			max-width: 100%;
+			margin: 15px 0;
+			border: 1px solid #eee;
+		}
+		.left_main .photoWrapEven {
+			font-size: 0;
+			border: 1px solid #eee;
+			margin: 30px 0;
+			padding: 5px;
+		}
+		.left_main .photoWrapEven span {
+			display: inline-block;
+			width: 50%;
+			padding-bottom: 360px;
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		.left_main .content {
+			text-align: left;
+		}
+		.left_main .content h3 {
+			font-size: 24px;
+			font-weight: bold;
+			margin: 15px 0;
+		}
+		.left_main .content h6 {
+			padding: 10px 0;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		.left_main .content p {
+			text-indent: 2em;
+			margin: 10px 0;
+			line-height: 1.8;
+			text-align: justify;
+			color: #333;
+		}
+		.left_main .content p em {
+			font-style: normal;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<div class="box clearfix" id="swyth" v-cloak>
+		<div class="left_main">
+			<div v-for="(item, index) in content">
+				<h1><span>{{item.title}}</span></h1>
+				<h2 v-if="item.subTitle">{{item.subTitle}}</h2>
+				<p class="photoWrap photoWrapEven" v-if="item.images.length % 2 === 0">
+					<span v-for="image in item.images" :style="{backgroundImage: 'url(' + image.photo + ')'}"></span>
+				</p>
+				<p class="photoWrap" v-else>
+					<img v-for="image in item.images" :src="image.photo" alt="">
+				</p>
+				<div class="content" v-html="item.article"></div>
+			</div>
+		</div>
+		<div class="right_main">
+			<h3>水务一体化发展纪实</h3>
+			<div class="slide">
+				<a class="item" v-for="(item, index) in menu" @click="getContent(index)">{{index + 1}}
+					<div class="item-left" :style="{'background-image': 'url(' + item.cover + ')'}"></div>
+					<div class="item-right">
+						<h6 class="item-title">{{item.title}}</h6>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div class="footer">
+			<a href="" class="xz">水务一体化</a>
+			<a href="../../menu.html" class="fhcd">返回菜单</a>
+			<div class="biaoJi"></div>
+		</div>
+	</div>
+
+	<script src="../../js/jquery-1.9.1.js"></script>
+	<script src="../../js/vue.min.js"></script>
+	<script src="../../js/pingbao.js"></script>
+	<script src="../../js/footer.js"></script>
+	<script>
+		new Vue({
+			el: '#swyth',
+			data: function() {
+				return {
+					menu: [],
+					current: 0,
+					content: {}
+				}
+			},
+			methods: {
+			    getData: function () {
+                    var _this = this;
+					$.ajax({
+						type: 'GET',
+						url: 'data.json'
+					}).then(function (res) {
+					    _this.res = res;
+						_this.menu = res.menu;
+						_this.getContent(0);
+                    });
+                },
+                getContent: function (index) {
+					this.content = this.res.content[index]
+                },
+				toggle: function (index) {
+					this.current = index;
+				}
+			},
+			created: function () {
+				this.getData();
+			}
+		});
+	</script>
+</body>
+</html>
