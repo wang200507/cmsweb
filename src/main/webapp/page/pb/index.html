@@ -91,16 +91,13 @@
 
 
 			var _html = "<ul>";
-			/*for(var i = 0 ; i<77;i++){
+			for(var i = 0 ; i<77;i++){
                 var _transitionIndex = parseInt(Math.random()* _transitionArr.length);		//切换样式
 				var _imgIndex  = parseInt(Math.random() * _imgLength);
 				_html += "<li data-transition=\""+_transitionArr[_transitionIndex]+"\" data-slotamount=\"10\" data-masterspeed=\"30\">"
 				_html += "<img src=\"img/"+_imgIndex+".jpg\" alt=\"\" />"
 				_html += "</li>";
-			}*/
-            _html += "<li data-transition=\""+_transitionArr[0]+"\" data-slotamount=\"10\" data-masterspeed=\"30\">"
-            _html += "<img src=\"img/dangdaihui.jpg\" alt=\"\" />"
-            _html += "</li>";
+			}
             _html+="</ul>";
             _fullwidthbanner.html(_html);
 
