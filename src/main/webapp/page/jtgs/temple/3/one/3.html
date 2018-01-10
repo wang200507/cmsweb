@@ -16,11 +16,9 @@
 
 		<link rel="stylesheet" type="text/css" href="../../../css/news.css">
 		<link rel="stylesheet" type="text/css" href="../../../css/self.css" />
-
-		<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
 	</head>
 
-	<body onload="hp(0)" class="">
+	<body>
 		<div class="box">
 			<div class="left_main" style="width: 70%;">
 				<div class="neirong">
@@ -72,18 +70,12 @@
 				</div>
 			</div>
 			<div class="footer">
-				<div class="fh" onclick="hpback()">
-					<a class="fhcd" href="javascript:;">返回菜单</a>
+				<div class="fh">
+					<a class="fhcd">返回菜单</a>
 				</div>
 			</div>
+			<script src="/cmsweb/js/jquery-1.9.1.js"></script>
+			<script src="/cmsweb/js/back.js"></script>
+			<script type="text/javascript" src="/cmsweb/js/pingbao.js"></script>
 	</body>
-	<script type="text/javascript" src="../../js/pingbao.js"></script>
-	<script type="text/javascript">
-		function hpback() {
-			//window.location.href = "/cmsweb/page/jtgs/index.html?zzjg=zzjg";
-			window.parent.document.querySelector(".box").style.display = "block";
-			window.parent.document.getElementById("iframeChild").style.display = "none";
-		}
-	</script>
-
 </html>

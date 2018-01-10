@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<title>组织机构</title>
-	<link rel="stylesheet" href="css/element-ui-2.0.8.min.css">
+	<link rel="stylesheet" href="../../../../js/layer-v3.1.1/layer/theme/default/layer.css">
+	<link rel="stylesheet" href="../../css/common.css">
 	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-		}
 		svg {
 			width: 100%;
 			height: 100%;
@@ -18,24 +14,178 @@
 			outline: 0;
 			cursor: pointer;
 		}
+		#organization {
+			font-size: 0;
+		}
 	</style>
 </head>
 <body>
-	<div id="organization"></div>
-	<script src="js/jquery-1.8.3.min.js"></script>
-	<script src="js/vue.min.js"></script>
-	<script src="js/element-ui-2.0.8.min.js"></script>
+	<div id="organization" v-cloak>
+		<div id="popLayer" v-show="visible">
+			<ul v-show="getContent.content">
+				<li v-for="(item, index1) in getContent.content">
+					<dl>
+						<dt v-show="item.title">{{index1 + 1}}. {{item.title}}</dt>
+						<dd v-for="(p, index2) in item.text" v-if="item.title">{{index1 + 1}}.{{index2 + 1}}　{{p}}</dd>
+						<dd v-for="(p, index2) in item.text" v-else>{{index2 + 1}}.　{{p}}</dd>
+					</dl>
+				</li>
+			</ul>
+			<p class="emptyContent" v-show="!getContent.content">内容建设中……（请点击带<b class="five-pointed-star">★</b>号的标题）</p>
+		</div>
+	</div>
+	<script src="../../../../js/jquery-1.9.1.js"></script>
+	<script src="../../../../js/vue.min.js"></script>
+	<script src="../../../../js/layer-v3.1.1/layer/layer.js"></script>
+	<script src="../data.js"></script>
 	<script>
-		var OLD_COLOR = '#103E61',
+		var DIALOG_COLOR = '#103E60',
+            PAGE_COLOR = '#103E61',
 			FOCUS_COLOR = 'rgb(229, 0, 18)',
-			OLD_COLOR_QUERY = 'tspan[fill="' + OLD_COLOR + '"]';
+			DIALOG_COLOR_QUERY = 'tspan[fill="' + DIALOG_COLOR + '"]',
+            PAGE_COLOR_QUERY = 'tspan[fill="' + PAGE_COLOR + '"]';
 		new Vue({
 			el: '#organization',
+			data: function () {
+			    return {
+                    title: '',
+					visible: false
+				}
+            },
 			methods: {
 				setFill: function ($target, color) {
                     $target.attr('fill', color)
+                },
+				initDepartmentClick: function () {
+                    var _this = this;
+                    var $department = $(DIALOG_COLOR_QUERY);
+                    $department.click(function() {
+                        _this.$tspan = $(this);
+						_this.title = _this.$tspan.text();
+                        _this.visible = true;
+                        _this.setFill(_this.$tspan, FOCUS_COLOR);
+
+                        layer.open({
+                            title: _this.title + '职能介绍',
+                            type: 1,
+                            skin: 'layui-layer-rim', //加上边框
+                            area: ['80%', '80%'], //宽高
+                            content: $('#popLayer'),
+                            cancel: function(index, layero){
+                                layer.close(index);
+                                _this.visible = false;
+                            }
+                        });
+                    }).blur(function() {
+                        _this.setFill(_this.$tspan, DIALOG_COLOR);
+                    });
+                },
+                initPageClick: function () {
+                    var _this = this;
+                    var $page = $(PAGE_COLOR_QUERY);
+                    var $pageIframe = $(top.frames['iframeChildPage']);
+                    $page.click(function() {
+                        _this.$tspan = $(this);
+                        var $g = _this.$tspan.parents('g');
+                        if ($g.attr('id') === 'twoline') {
+                            _this.$tspan = $g.find(DIALOG_COLOR_QUERY);
+                            _this.title = _this.$tspan.eq(0).text() + _this.$tspan.eq(1).text();
+                        } else {
+                            _this.title = _this.$tspan.text();
+                        }
+                        _this.setFill(_this.$tspan, FOCUS_COLOR);
+                        switch (_this.title) {
+							case '宁夏水利水电工程局':
+                                $pageIframe.attr('src', 'temple/3/one/10.html').show();
+								break;
+                            case '宁夏太阳山水务有限责任公司':
+                                $pageIframe.attr('src', 'temple/3/one/6.html').show();
+                                break;
+                            case '宁夏中源水务有限公司':
+                                $pageIframe.attr('src', 'temple/3/one/1.html').show();
+                                break;
+                            case '宁夏六盘山水务有限公司':
+                                $pageIframe.attr('src', 'temple/3/one/12.html').show();
+                                break;
+
+                            case '宁夏水投银川水务有限公司':
+                                $pageIframe.attr('src', 'temple/3/one/7.html').show();
+                                break;
+                            case '宁夏宁东水务有限责任公司':
+                                $pageIframe.attr('src', 'temple/3/one/2.html').show();
+                                break;
+                            case '宁夏水投中宁水务有限公司':
+                                $pageIframe.attr('src', 'temple/3/one/9.html').show();
+                                break;
+                            case '宁夏长城水务有限责任公司':
+                                $pageIframe.attr('src', 'temple/3/one/4.html').show();
+                                break;
+                            case '宁夏水投红寺堡水务有限公司':
+                                $pageIframe.attr('src', 'temple/3/one/3.html').show();
+                                break;
+                            case '宁夏清水源环保科技有限责任公司':
+                                $pageIframe.attr('src', 'temple/3/one/5.html').show();
+                                break;
+                            case '宁夏水投平罗水务有限公司':
+                                $pageIframe.attr('src', 'temple/3/one/11.html').show();
+                                break;
+                            case '宁夏水投科技有限公司':
+                                $pageIframe.attr('src', 'temple/3/one/8.html').show();
+                                break;
+
+                            case '宁夏中南部城乡饮水':
+                                $pageIframe.attr('src', 'temple/3/one/14.html').show();
+                                break;
+                            case '工程建设分公司':
+                                $pageIframe.attr('src', 'temple/3/one/14.html').show();
+                                break;
+
+                            case '阿曼杜古姆供水项目部':
+                                $pageIframe.attr('src', 'temple/3/one/13.html').show();
+                                break;
+
+							default:
+                                layer.open({
+                                    title: _this.title + '职能介绍',
+                                    type: 1,
+                                    skin: 'layui-layer-rim', //加上边框
+                                    area: ['80%', '80%'], //宽高
+                                    content: $('#popLayer'),
+                                    cancel: function(index, layero){
+                                        layer.close(index);
+                                        _this.visible = false;
+                                    }
+                                });
+                                break;
+						}
+                    }).blur(function() {
+                        _this.setFill(_this.$tspan, DIALOG_COLOR);
+                    });
                 }
             },
+			computed: {
+                getContent: function () {
+                    var _this = this;
+                    if (this.title) {
+                        var res = data.filter(function (item) {
+                            var departname = item.departname;
+                            if (typeof departname === 'string') {
+                                return _this.title === departname
+                            } else if ($.isArray(departname)) {
+                                for (var i = 0; i < departname.length; i++) {
+                                    if (_this.title === departname[i]) {
+                                        return _this.title === departname[i];
+                                    }
+                                }
+                            }
+                        });
+                        if (res.length) {
+                            return res[0];
+                        }
+                    }
+                    return ''
+                }
+			},
 			created: function() {
 				var _this = this;
 				$.ajax({
@@ -43,30 +193,8 @@
 					dataType: 'xml'
 				}).then(function(res) {
 					$('#organization').append(res.documentElement);
-					var $texts = $(OLD_COLOR_QUERY);
-					$texts.click(function() {
-						_this.$tspan = $(this);
-                        var title;
-						var $g = _this.$tspan.parents('g');
-                        if ($g.attr('id') === 'twoline') {
-                            _this.$tspan = $g.find(OLD_COLOR_QUERY);
-							title = _this.$tspan.eq(0).text() + _this.$tspan.eq(1).text();
-						} else {
-                            title = _this.$tspan.text();
-						}
-                        _this.setFill(_this.$tspan, FOCUS_COLOR);
-
-						_this.$msgbox({
-							title: title,
-							dangerouslyUseHTMLString: true,
-							message: '<strong>这是 <i>HTML</i> 片段</strong>',
-							showCancelButton: false,
-							confirmButtonText: '关闭',
-							lockScroll: false
-						}).then(function(confirm) {}, function(cancel) {});
-					}).blur(function() {
-                        _this.setFill(_this.$tspan, OLD_COLOR);
-					});
+					_this.initDepartmentClick();
+					_this.initPageClick();
 				}, function(err) {
 					console.log(err);
 				});

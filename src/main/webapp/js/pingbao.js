@@ -1,3 +1,4 @@
+/*
 !(function(timeout) {
 	
 	var current = new Date().getTime();
@@ -17,3 +18,4 @@
 		}
 	}, 1000)
 })(1000*60*2);
+*/
