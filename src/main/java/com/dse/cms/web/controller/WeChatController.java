@@ -1,6 +1,5 @@
 package com.dse.cms.web.controller;
 
-import com.dse.cms.web.entity.WeChat;
 import com.dse.cms.web.framework.utils.DateUtil;
 import com.dse.cms.web.framework.utils.DseResult;
 import com.dse.cms.web.framework.utils.Utility;
@@ -11,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  * ${DESCRIPTION}

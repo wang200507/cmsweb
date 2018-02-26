@@ -86,12 +86,12 @@
 			txt = txt.substring(4);
             var _fullwidthbanner  = $(".fullwidthbanner");
 
-            var _imgLength =  77 ;		//图片数量
+            var _imgLength =  92 ;		//图片数量
 			var _transitionArr = ["3dcurtain-horizontal","3dcurtain-vertical","papercut","turnoff","flyin","fade","pop","flow","slidefade"];
 
 
 			var _html = "<ul>";
-			for(var i = 0 ; i<77;i++){
+			for(var i = 0 ; i<_imgLength;i++){
                 var _transitionIndex = parseInt(Math.random()* _transitionArr.length);		//切换样式
 				var _imgIndex  = parseInt(Math.random() * _imgLength);
 				_html += "<li data-transition=\""+_transitionArr[_transitionIndex]+"\" data-slotamount=\"10\" data-masterspeed=\"30\">"
