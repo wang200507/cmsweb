@@ -61,7 +61,7 @@
 			var _html = "<ul>";
 			for(var i = 0 ; i<_imgLength;i++){
                 var _transitionIndex = parseInt(Math.random()* _transitionArr.length);		//切换样式
-				var _imgIndex  = parseInt(Math.random() * _imgLength);
+				var _imgIndex  = parseInt(Math.random() * _imgLength)+1;
 				_html += "<li data-transition=\""+_transitionArr[_transitionIndex]+"\" data-slotamount=\"10\" data-masterspeed=\"30\">"
 				_html += "<img src=\"img/NXSTpb"+_imgIndex+".jpg\" alt=\"\" />"
 				_html += "</li>";
