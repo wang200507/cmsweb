@@ -43,38 +43,6 @@
 		<div id="wrapper" style="width: 50%;margin-left: 25%;">
 			<div class="fullwidthbanner-container">
 				<div class="fullwidthbanner" style="height: 50%;">
-					<!--<ul>
-						<li data-transition="3dcurtain-horizontal" data-slotamount="10" data-masterspeed="30">
-							<img src="img/1.jpg" alt="" />
-						</li>
-						<li data-transition="3dcurtain-vertical" data-slotamount="10" data-masterspeed="30" data-link="#">
-							<img src="img/2.jpg" alt="" />
-						</li>
-						<li data-transition="papercut" data-slotamount="10" data-masterspeed="30" data-link="#">
-							<img src="img/3.jpg" alt="" />
-						</li>
-						<li data-transition="turnoff" data-slotamount="10" data-masterspeed="30">
-							<img src="img/4.jpg" alt="" />
-						</li>
-						<li data-transition="flyin" data-slotamount="10" data-masterspeed="30">
-							<img src="img/5.jpg" alt="" />
-						</li>
-						<li data-transition="flyin" data-slotamount="10" data-masterspeed="30">
-							<img src="img/5.jpg" alt="" />
-						</li>
-						<li data-transition="turnoff" data-slotamount="10" data-masterspeed="30">
-							<img src="img/5.jpg" alt="" />
-						</li>
-						<li data-transition="flyin" data-slotamount="10" data-masterspeed="30">
-							<img src="img/5.jpg" alt="" />
-						</li>
-						<li data-transition="papercut" data-slotamount="10" data-masterspeed="30">
-							<img src="img/5.jpg" alt="" />
-						</li>
-						<li data-transition="flyin" data-slotamount="10" data-masterspeed="30">
-							<img src="img/5.jpg" alt="" />
-						</li>
-					</ul>-->
 				</div>
 			</div>
 		</div>
@@ -86,7 +54,7 @@
 			txt = txt.substring(4);
             var _fullwidthbanner  = $(".fullwidthbanner");
 
-            var _imgLength =  92 ;		//图片数量
+            var _imgLength =  30 ;		//图片数量
 			var _transitionArr = ["3dcurtain-horizontal","3dcurtain-vertical","papercut","turnoff","flyin","fade","pop","flow","slidefade"];
 
 
@@ -95,7 +63,7 @@
                 var _transitionIndex = parseInt(Math.random()* _transitionArr.length);		//切换样式
 				var _imgIndex  = parseInt(Math.random() * _imgLength);
 				_html += "<li data-transition=\""+_transitionArr[_transitionIndex]+"\" data-slotamount=\"10\" data-masterspeed=\"30\">"
-				_html += "<img src=\"img/"+_imgIndex+".jpg\" alt=\"\" />"
+				_html += "<img src=\"img/NXSTpb"+_imgIndex+".jpg\" alt=\"\" />"
 				_html += "</li>";
 			}
             _html+="</ul>";
